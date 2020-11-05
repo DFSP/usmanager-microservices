@@ -1,5 +1,5 @@
 #!/bin/sh
 #Script to launch processes
 
-npm start
-#exec ./registration-client -process=node -service=FRONT-END -server=$1 -port=$2 -hostname=$4
+yarn node dist/server.js &
+exec ./registration-client -process=node -service=SOCK_SHOP_FRONT_END -register=false -server=$1 -port=$2 -hostname=$4

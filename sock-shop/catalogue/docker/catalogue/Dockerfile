@@ -20,7 +20,7 @@ RUN apk add libcap
 RUN mkdir /app
 WORKDIR /app
 COPY --from=build /app/catalogue catalogue
-COPY --from=registration-client /app/registration-client registration-client
+COPY --from=registration-client registration-client registration-client
 COPY images images
 COPY scripts/docker-init.sh docker-init.sh
 RUN ["chmod", "+x", "docker-init.sh"]

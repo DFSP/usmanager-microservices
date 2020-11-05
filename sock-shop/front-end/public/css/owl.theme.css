@@ -99,7 +99,7 @@
 /* preloading images */
 .owl-item.loading {
     min-height: 150px;
-    background: url('../img/AjaxLoader.gif') no-repeat center center
+    background: url('public/AjaxLoader.gif') no-repeat center center
 }
 
 .owl-carousel .owl-item {

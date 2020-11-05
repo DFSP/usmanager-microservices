@@ -19,7 +19,7 @@ FROM alpine:3.12.0
 RUN mkdir /app
 WORKDIR /app
 COPY --from=build /app/payment payment
-COPY --from=registration-client /app/registration-client registration-client
+COPY --from=registration-client registration-client registration-client
 COPY scripts/docker-init.sh docker-init.sh
 RUN ["chmod", "+x", "docker-init.sh"]
 ENTRYPOINT ["./docker-init.sh"]

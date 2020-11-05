@@ -6,7 +6,7 @@ FROM rabbitmq:alpine
 # include dependencies
 COPY --from=registration-client-java /root/.m2 /root/.m2
 
-COPY --from=registration-client /app/registration-client ./registration-client
+COPY --from=registration-client registration-client ./registration-client
 COPY scripts/docker-init.sh ./docker-init.sh
 
 RUN ["chmod", "+x", "docker-init.sh"]

@@ -15,7 +15,7 @@ FROM openjdk:8-jdk-alpine
 WORKDIR /usr/src/app
 COPY --from=build /usr/src/app/target/orders.jar orders.jar
 
-COPY --from=registration-client /app/registration-client registration-client
+COPY --from=registration-client registration-client registration-client
 
 COPY scripts/docker-init.sh docker-init.sh
 RUN ["chmod", "+x", "docker-init.sh"]

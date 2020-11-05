@@ -16,7 +16,7 @@ WORKDIR /usr/src/app
 COPY --from=build /usr/src/app/target/shipping.jar shipping.jar
 
 
-COPY --from=registration-client /app/registration-client registration-client
+COPY --from=registration-client registration-client registration-client
 
 COPY scripts/docker-init.sh docker-init.sh
 RUN ["chmod", "+x", "docker-init.sh"]

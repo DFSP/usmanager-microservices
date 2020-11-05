@@ -2,11 +2,13 @@
   "name": "microservices-demo-front-end",
   "version": "0.0.1",
   "description": "Front end for microservices demo application.",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
     "test": "babel-node istanbul cover node_modules/.bin/_mocha -- test/*_test.js test/api/*_test.js",
     "coverage": "babel-node istanbul cover --report cobertura node_modules/.bin/_mocha -- test/*_test.js test/api/*_test.js && mocha test/*_test.js test/api/*_test.js --reporter mocha-junit-reporter --reporter-options mochaFile=./results/test-results.xml",
-    "start": "babel-node server.js"
+    "build": "babel src/server.js -d dist",
+    "start": "npm run build && node src/server.js",
+    "serve": "node src/server.js"
   },
   "repository": {
     "type": "git",
@@ -19,22 +21,24 @@
   "license": "MIT",
   "dependencies": {
     "async": "^2.6.1",
+    "axios": "^0.18.0",
     "body-parser": "^1.15.1",
+    "connect-redis": "^3.2.0",
     "cookie-parser": "^1.4.3",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "finalhandler": "^0.4.1",
-    "request": "^2.72.0",
-    "serve-static": "^1.10.2",
-    "prom-client": "^6.3.0",
     "morgan": "^1.7.0",
-    "connect-redis": "^3.2.0",
-    "axios": "^0.18.0",
+    "prom-client": "^6.3.0",
+    "request": "^2.72.0",
+    "save-dev": "0.0.1-security",
+    "serve-static": "^1.10.2",
     "sync-request": "^6.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.12.1",
     "@babel/core": "^7.12.3",
-    "@babel/node": "^7.12.1",
+    "@babel/node": "^7.12.6",
     "@babel/plugin-transform-destructuring": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "chai": "^3.5.0",

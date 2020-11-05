@@ -33,7 +33,7 @@
         , chaiHttp = require("chai-http")
         , sinon = require("sinon")
         , expect = chai.expect
-        , helpers = require("../helpers")
+        , helpers = require("../src/helpers")
         , app
 
     describe("helpers", function () {
