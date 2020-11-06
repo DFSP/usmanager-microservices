@@ -3,7 +3,6 @@ module github.com/usmanager/manager/microservices/sock-shop/user
 go 1.13
 
 require (
-	bitbucket.org/cloudedgemicroserviceteam/go-client-register-go v0.0.0-20180928211505-57e28f509851
 	github.com/Shopify/sarama v1.11.0
 	github.com/Sirupsen/logrus v0.11.6-0.20170317143214-10f801ebc38b
 	github.com/afex/hystrix-go v0.0.0-20160615205002-39520ddd07a9
@@ -18,7 +17,7 @@ require (
 	github.com/go-logfmt/logfmt v0.2.1-0.20160601130801-d4327190ff83
 	github.com/go-stack/stack v1.5.2
 	github.com/gogo/protobuf v0.0.0-20170104202138-f9114dace7bd
-	github.com/golang/protobuf v1.2.0
+	github.com/golang/protobuf v0.0.0-20160829194233-1f49d83d9aa0
 	github.com/golang/snappy v0.0.0-20160529050041-d9eb7a3d35ec
 	github.com/gorilla/context v1.1.1
 	github.com/gorilla/mux v0.0.0-20160816184630-cf79e51a62d8
@@ -34,11 +33,9 @@ require (
 	github.com/prometheus/common v0.0.0-20160917184401-9a94032291f2
 	github.com/prometheus/procfs v0.0.0-20160411190841-abf152e5f3e9
 	github.com/rcrowley/go-metrics v0.0.0-20161128210544-1f30fe9094a5
-	github.com/weaveworks/common v0.0.0-20170321114712-f94043b3da14
-	golang.org/x/net v0.0.0-20180724234803-3673e40ba225
-	golang.org/x/oauth2 v0.0.0-20180821212333-d2e6202438be
+	github.com/weaveworks/common v0.0.0-20170918142215-df441dcd9cfd
+	golang.org/x/net v0.0.0-20160819232638-7394c112eae4
 	golang.org/x/sys v0.0.0-20170308153327-99f16d856c98
-	google.golang.org/appengine v1.2.0
 	google.golang.org/grpc v1.0.6-0.20170111191052-50955793b018
 	gopkg.in/mgo.v2 v2.0.0-20160818020120-3f83fa500528
 	gopkg.in/tomb.v2 v2.0.0-20140626144623-14b3d72120e8

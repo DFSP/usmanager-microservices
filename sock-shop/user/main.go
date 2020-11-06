@@ -180,7 +180,7 @@ func main() {
 
 	// Create and launch the HTTP server.
 	go func() {
-		logger.Log("transport", "HTTP", "port", port)
+		_ = logger.Log("transport", "HTTP", "port", port)
 		errc <- http.ListenAndServe(fmt.Sprintf(":%v", port), handler)
 	}()
 

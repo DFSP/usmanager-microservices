@@ -23,10 +23,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="10764be4-582e-4c4c-b26d-f6bd7855876b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sock-shop/user/glide.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/queue-master/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/queue-master/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/user/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/user/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/rabbitmq/docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/rabbitmq/docker/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/user/db/db_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/user/db/db_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/user/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/user/go.sum" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/user/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/user/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +82,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="go.import.settings.migrated" value="true" />
@@ -91,6 +96,9 @@
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/sock-shop/user" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/sock-shop/user" />
     </key>
@@ -144,7 +152,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1604631252693</updated>
-      <workItem from="1604631253838" duration="701000" />
+      <workItem from="1604631253838" duration="3317000" />
     </task>
     <servers />
   </component>
@@ -170,6 +178,10 @@
       <screen x="58" y="27" width="1862" height="1053" />
     </state>
     <state x="785" y="311" width="400" height="334" key="#Go_Modules/58.27.1862.1053@58.27.1862.1053" timestamp="1604631270674" />
+    <state x="676" y="284" width="596" height="403" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1604633493586">
+      <screen x="58" y="27" width="1862" height="1053" />
+    </state>
+    <state x="676" y="284" width="596" height="403" key="#com.intellij.fileTypes.FileTypeChooser/58.27.1862.1053@58.27.1862.1053" timestamp="1604633493586" />
     <state x="872" y="347" width="216" height="268" key="EnvironmentVariablesDialog" timestamp="1604631269800">
       <screen x="58" y="27" width="1862" height="1053" />
     </state>
@@ -186,9 +198,9 @@
       <screen x="58" y="27" width="1862" height="1053" />
     </state>
     <state x="467" y="56" width="1024" height="852" key="SettingsEditor/58.27.1862.1053@58.27.1862.1053" timestamp="1604631624175" />
-    <state x="828" y="196" width="669" height="522" key="find.popup" timestamp="1604631502403">
+    <state x="828" y="196" width="709" height="522" key="find.popup" timestamp="1604634573494">
       <screen x="58" y="27" width="1862" height="1053" />
     </state>
-    <state x="828" y="196" width="669" height="522" key="find.popup/58.27.1862.1053@58.27.1862.1053" timestamp="1604631502403" />
+    <state x="828" y="196" width="709" height="522" key="find.popup/58.27.1862.1053@58.27.1862.1053" timestamp="1604634573494" />
   </component>
 </project>
