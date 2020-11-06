@@ -8,10 +8,10 @@ go env -w GOPRIVATE=github.com/usmanager/*
 
 # Build payment binary
 COPY . /go/src/github.com/usmanager/manager/microservices/sock-shop/payment
-WORKDIR /go/src/github.com/usmanager/manager/microservices/sock-shop/payment/cmd/paymentsvc
+WORKDIR /go/src/github.com/usmanager/manager/microservices/sock-shop/payment/cmd
 RUN go build -o payment && \
 mkdir /app && \
-mv /go/src/github.com/usmanager/manager/microservices/sock-shop/payment/cmd/paymentsvc/payment /app/payment
+mv /go/src/github.com/usmanager/manager/microservices/sock-shop/payment/cmd/payment /app/payment
 
 # Build final image
 FROM usmanager/registration-client AS registration-client

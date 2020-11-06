@@ -30,7 +30,7 @@ go mod vendor
 
 #### Using native Go tools
 ```
-cd cmd/paymentsvc
+cd cmd
 go build -o payment
 ```
 
@@ -46,7 +46,7 @@ The result is a binary named `payment`, in the current directory.
 
 #### Using Go native
 
-If you followed to Go build instructions, you should have a "payment" binary in $GOPATH/src/github.com/microservices-demo/payment/cmd/paymentsvc/.
+If you followed to Go build instructions, you should have a "payment" binary in $GOPATH/src/github.com/microservices-demo/payment/cmd/.
 To run it use:
 ```
 ./payment

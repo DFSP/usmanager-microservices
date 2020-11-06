@@ -1,4 +1,4 @@
-FROM registration-client AS registration-client
+FROM usmanager/registration-client AS registration-client
 FROM node:alpine3.12 AS base
 
 WORKDIR /app

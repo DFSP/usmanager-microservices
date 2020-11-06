@@ -1,0 +1,12 @@
+target
+.github
+.gradle
+api-spec
+scripts
+!scripts/docker-init.sh
+test
+.gitignore
+*.yml
+LICENSE
+*.png
+README.md

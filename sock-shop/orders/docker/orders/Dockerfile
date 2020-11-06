@@ -1,4 +1,4 @@
-FROM usmanager/registration-client-java as registration-client-java
+FROM usmanager/registration-client-java AS registration-client-java
 FROM usmanager/registration-client AS registration-client
 
 FROM maven:3.6.0-jdk-11-slim AS build

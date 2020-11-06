@@ -1,0 +1,8 @@
+scripts
+!scripts/docker-init.sh
+target
+.github
+.gitignore
+*.yml
+LICENSE
+README.md

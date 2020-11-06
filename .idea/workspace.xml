@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="10764be4-582e-4c4c-b26d-f6bd7855876b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/sock-shop/carts/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sock-shop/orders/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sock-shop/queue-master/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sock-shop/rabbitmq/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/carts/docker/carts/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/carts/docker/carts/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/carts/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/carts/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/carts/src/main/java/works/weave/socks/cart/services/ApplicationStartup.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/catalogue/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/catalogue/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/catalogue/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/catalogue/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/catalogue/cmd/cataloguesvc/catalogue" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/catalogue/cmd/catalogue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/catalogue/cmd/cataloguesvc/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/catalogue/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/catalogue/docker/catalogue/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/catalogue/docker/catalogue/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/catalogue/scripts/docker-init.sh" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/catalogue/scripts/docker-init.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/front-end/docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/front-end/docker/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/orders/docker/orders/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/orders/docker/orders/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/orders/docker/orders/Dockerfile-weaveworksdemos" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/orders/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/orders/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/payment/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/payment/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/payment/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/payment/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/payment/cmd/paymentsvc/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/payment/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/payment/cmd/paymentsvc/payment" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/payment/cmd/payment" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/payment/docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/payment/docker/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/payment/scripts/docker-init.sh" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/payment/scripts/docker-init.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/queue-master/docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/queue-master/docker/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/queue-master/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/queue-master/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/queue-master/src/main/java/works/weave/socks/queuemaster/services/ApplicationStartup.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/rabbitmq/docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/rabbitmq/docker/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/rabbitmq/scripts/docker-init.sh" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/rabbitmq/scripts/docker-init.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/shipping/docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/shipping/docker/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/shipping/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/shipping/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/shipping/scripts/docker-init.sh" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/shipping/scripts/docker-init.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/shipping/src/main/java/works/weave/socks/shipping/services/ApplicationStartup.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/user/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/user/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/user/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/user/Dockerfile-test" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/user/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/user/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/user/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/user/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/user/scripts/docker-init.sh" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/user/scripts/docker-init.sh" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/online-boutique/src/adservice">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="GOROOT" path="/usr/lib/go-1.13" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="false" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1jtlQYhjyZcAzpZLNoLVpVDGgSn" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="ignore_missing_gitignore" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/sock-shop/user" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RunManager" selected="Spring Boot.ShippingServiceApplication">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CartApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="carts" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="works.weave.socks.cart.CartApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="orders" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="works.weave.socks.orders.OrderApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="QueueMasterApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="queue-master" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="works.weave.socks.queuemaster.QueueMasterApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShippingServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="shipping" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="works.weave.socks.shipping.ShippingServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="10764be4-582e-4c4c-b26d-f6bd7855876b" name="Default Changelist" comment="" />
+      <created>1604631252693</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1604631252693</updated>
+      <workItem from="1604631253838" duration="499000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="785" y="311" width="400" height="334" key="#Go_Modules" timestamp="1604631270674">
+      <screen x="58" y="27" width="1862" height="1053" />
+    </state>
+    <state x="785" y="311" width="400" height="334" key="#Go_Modules/58.27.1862.1053@58.27.1862.1053" timestamp="1604631270674" />
+    <state x="872" y="347" width="216" height="268" key="EnvironmentVariablesDialog" timestamp="1604631269800">
+      <screen x="58" y="27" width="1862" height="1053" />
+    </state>
+    <state x="872" y="347" width="216" height="268" key="EnvironmentVariablesDialog/58.27.1862.1053@58.27.1862.1053" timestamp="1604631269800" />
+    <state x="762" y="189" width="424" height="592" key="FileChooserDialogImpl" timestamp="1604631619080">
+      <screen x="58" y="27" width="1862" height="1053" />
+    </state>
+    <state x="762" y="189" width="424" height="592" key="FileChooserDialogImpl/58.27.1862.1053@58.27.1862.1053" timestamp="1604631619080" />
+    <state x="564" y="228" width="825" height="514" key="NewModule_or_Project.wizard" timestamp="1604631621848">
+      <screen x="58" y="27" width="1862" height="1053" />
+    </state>
+    <state x="564" y="228" width="825" height="514" key="NewModule_or_Project.wizard/58.27.1862.1053@58.27.1862.1053" timestamp="1604631621848" />
+    <state x="467" y="56" width="1024" height="852" key="SettingsEditor" timestamp="1604631624175">
+      <screen x="58" y="27" width="1862" height="1053" />
+    </state>
+    <state x="467" y="56" width="1024" height="852" key="SettingsEditor/58.27.1862.1053@58.27.1862.1053" timestamp="1604631624175" />
+    <state x="828" y="196" width="669" height="522" key="find.popup" timestamp="1604631502403">
+      <screen x="58" y="27" width="1862" height="1053" />
+    </state>
+    <state x="828" y="196" width="669" height="522" key="find.popup/58.27.1862.1053@58.27.1862.1053" timestamp="1604631502403" />
+  </component>
+</project>

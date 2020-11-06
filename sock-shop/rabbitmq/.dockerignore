@@ -1,0 +1,5 @@
+scripts
+!scripts/docker-init.sh
+README.md
+.dockerignore
+.gitignore

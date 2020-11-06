@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/microservices.iml" filepath="$PROJECT_DIR$/.idea/microservices.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sock-shop/user/user.iml" filepath="$PROJECT_DIR$/sock-shop/user/user.iml" />
     </modules>
   </component>
 </project>

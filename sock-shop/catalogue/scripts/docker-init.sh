@@ -2,4 +2,4 @@
 #Script to launch processes
 
 ./catalogue -port=$3 -DSN=$5 &
-exec ./registration-client -process=app -service=SOCK_SHOP_CATALOGUE -register=false -server=$1 -port=$2 -hostname=$4
+exec ./registration-client -process=catalogue -service=SOCK_SHOP_CATALOGUE -register=false -server=$1 -port=$2 -hostname=$4

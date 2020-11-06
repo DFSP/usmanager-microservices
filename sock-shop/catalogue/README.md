@@ -30,7 +30,7 @@ In order to build the project locally you need to make sure that the repository 
 $GOPATH directory: $GOPATH/src/github.com/microservices-demo/catalogue/. Once that is in place you can build by running:
 
 ```
-cd $GOPATH/src/github.com/microservices-demo/catalogue/cmd/cataloguesvc/
+cd $GOPATH/src/github.com/microservices-demo/catalogue/cmd
 go build -o catalogue
 ```
 
@@ -49,7 +49,7 @@ docker run catalogue
 
 #### Go native
 
-If you followed to Go build instructions, you should have a "catalogue" binary in $GOPATH/src/github.com/microservices-demo/catalogue/cmd/cataloguesvc/.
+If you followed to Go build instructions, you should have a "catalogue" binary in $GOPATH/src/github.com/microservices-demo/catalogue/cmd/.
 To run it use:
 ```
 ./catalogue
