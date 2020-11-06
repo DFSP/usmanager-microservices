@@ -3,50 +3,30 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="10764be4-582e-4c4c-b26d-f6bd7855876b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/sock-shop/carts/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sock-shop/orders/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sock-shop/queue-master/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sock-shop/rabbitmq/.dockerignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sock-shop/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/carts/docker/carts/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/carts/docker/carts/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/carts/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/carts/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/carts/src/main/java/works/weave/socks/cart/services/ApplicationStartup.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/catalogue/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/catalogue/.dockerignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/catalogue/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/catalogue/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/catalogue/cmd/cataloguesvc/catalogue" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/catalogue/cmd/catalogue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/catalogue/cmd/cataloguesvc/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/catalogue/cmd/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/catalogue/docker/catalogue/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/catalogue/docker/catalogue/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/catalogue/scripts/docker-init.sh" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/catalogue/scripts/docker-init.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/front-end/docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/front-end/docker/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/orders/docker/orders/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/orders/docker/orders/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/orders/docker/orders/Dockerfile-weaveworksdemos" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/orders/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/orders/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/payment/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/payment/.dockerignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/payment/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/payment/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/payment/cmd/paymentsvc/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/payment/cmd/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/payment/cmd/paymentsvc/payment" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/payment/cmd/payment" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/payment/docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/payment/docker/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/payment/scripts/docker-init.sh" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/payment/scripts/docker-init.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/queue-master/docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/queue-master/docker/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/queue-master/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/queue-master/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/queue-master/src/main/java/works/weave/socks/queuemaster/services/ApplicationStartup.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/rabbitmq/docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/rabbitmq/docker/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/rabbitmq/scripts/docker-init.sh" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/rabbitmq/scripts/docker-init.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/shipping/docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/shipping/docker/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/shipping/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/shipping/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/shipping/scripts/docker-init.sh" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/shipping/scripts/docker-init.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/shipping/src/main/java/works/weave/socks/shipping/services/ApplicationStartup.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/user/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/user/.dockerignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/user/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/user/Dockerfile-test" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/user/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/user/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/user/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/user/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/user/scripts/docker-init.sh" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/user/scripts/docker-init.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/queue-master/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/queue-master/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/user/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/user/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +90,11 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/sock-shop/user" />
+    </key>
+  </component>
   <component name="RunManager" selected="Spring Boot.ShippingServiceApplication">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
@@ -159,12 +144,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1604631252693</updated>
-      <workItem from="1604631253838" duration="499000" />
+      <workItem from="1604631253838" duration="701000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
