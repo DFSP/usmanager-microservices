@@ -23,14 +23,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="10764be4-582e-4c4c-b26d-f6bd7855876b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sock-shop/user/glide.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/rabbitmq/docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/rabbitmq/docker/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/user/db/db_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/user/db/db_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/user/go.mod" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/user/go.sum" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sock-shop/user/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/user/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/carts/docker/carts/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/carts/docker/carts/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/catalogue/docker/catalogue/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/catalogue/docker/catalogue/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/orders/docker/orders/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/orders/docker/orders/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/queue-master/docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/queue-master/docker/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/shipping/docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/shipping/docker/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/user/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/user/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sock-shop/user/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/sock-shop/user/go.sum" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +53,12 @@
       <state>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="hipstershop" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -91,15 +99,16 @@
     <property name="ignore_missing_gitignore" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/sock-shop/user" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.26843318" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/sock-shop/user" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/sock-shop/user" />
     </key>
   </component>
@@ -152,7 +161,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1604631252693</updated>
-      <workItem from="1604631253838" duration="3317000" />
+      <workItem from="1604631253838" duration="3889000" />
+      <workItem from="1604657361185" duration="1521000" />
+      <workItem from="1604696431772" duration="1880000" />
     </task>
     <servers />
   </component>
@@ -169,6 +180,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -194,13 +206,13 @@
       <screen x="58" y="27" width="1862" height="1053" />
     </state>
     <state x="564" y="228" width="825" height="514" key="NewModule_or_Project.wizard/58.27.1862.1053@58.27.1862.1053" timestamp="1604631621848" />
-    <state x="467" y="56" width="1024" height="852" key="SettingsEditor" timestamp="1604631624175">
+    <state x="559" y="167" width="1024" height="852" key="SettingsEditor" timestamp="1604696660201">
       <screen x="58" y="27" width="1862" height="1053" />
     </state>
-    <state x="467" y="56" width="1024" height="852" key="SettingsEditor/58.27.1862.1053@58.27.1862.1053" timestamp="1604631624175" />
-    <state x="828" y="196" width="709" height="522" key="find.popup" timestamp="1604634573494">
+    <state x="559" y="167" width="1024" height="852" key="SettingsEditor/58.27.1862.1053@58.27.1862.1053" timestamp="1604696660201" />
+    <state x="828" y="196" width="865" height="558" key="find.popup" timestamp="1604697616137">
       <screen x="58" y="27" width="1862" height="1053" />
     </state>
-    <state x="828" y="196" width="709" height="522" key="find.popup/58.27.1862.1053@58.27.1862.1053" timestamp="1604634573494" />
+    <state x="828" y="196" width="865" height="558" key="find.popup/58.27.1862.1053@58.27.1862.1053" timestamp="1604697616137" />
   </component>
 </project>

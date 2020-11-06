@@ -1,7 +1,7 @@
 FROM usmanager/registration-client-java AS registration-client-java
 FROM usmanager/registration-client AS registration-client
 
-FROM maven:3.6.0-jdk-11-slim AS build
+FROM maven:3.6.1-jdk-8-alpine AS build
 
 # include dependencies
 COPY --from=registration-client-java /root/.m2 /root/.m2
@@ -11,7 +11,7 @@ COPY src ./src
 COPY pom.xml .
 RUN mvn -DskipTests -f pom.xml clean package
 
-FROM openjdk:8-jdk-alpine
+FROM openjdk:8-jre-alpine
 WORKDIR /usr/src/app
 COPY --from=build /usr/src/app/target/queue-master.jar queue-master.jar
 

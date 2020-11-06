@@ -16,7 +16,6 @@ mv /go/src/github.com/usmanager/manager/microservices/sock-shop/catalogue/cmd/ca
 # Build final image
 FROM usmanager/registration-client AS registration-client
 FROM alpine:3.12.0
-RUN apk add libcap
 RUN mkdir /app
 WORKDIR /app
 COPY --from=build /app/catalogue catalogue
