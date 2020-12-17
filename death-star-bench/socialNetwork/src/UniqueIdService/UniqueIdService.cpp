@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
   init_logger();
   SetUpTracer("config/jaeger-config.yml", "unique-id-service");
 
-  json config_json;
+  json config_json; //TODO alterar por getServiceEndpoint ao request-location-monitor (localhost:1906/...)
   if (load_config_file("config/service-config.json", &config_json) != 0) {
     exit(EXIT_FAILURE);
   }

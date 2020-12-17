@@ -62,7 +62,7 @@
 
     async function getServiceEndpoint(service) {
         try {
-            const response = await axios.get(`http://localhost:1906/api/services/${service}/endpoint`);
+            const response = await axios.get(`http://localhost:1906/api/services/SOCK-SHOP-${service}/endpoint`);
             const data = response.data;
             return data.endpoint
         } catch (error) {

@@ -45,7 +45,7 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
 	private void registerEndpoint() {
 		EndpointsApi endpointsApi = new EndpointsApi();
 		try {
-			endpointsApi.register();
+			endpointsApi.registerEndpoint();
 		}
 		catch (ApiException e) {
 			e.printStackTrace();

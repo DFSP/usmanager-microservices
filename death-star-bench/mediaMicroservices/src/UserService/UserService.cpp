@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
     exit(EXIT_FAILURE);
   }
 
-  std::string secret = config_json["secret"];
+  std::string secret = "secret";
 
   int port = config_json["user-service"]["port"];
   std::string compose_addr = config_json["compose-review-service"]["addr"];

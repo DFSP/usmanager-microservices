@@ -2,7 +2,7 @@ FROM usmanager/registration-client AS registration-client
 
 FROM rabbitmq:alpine
 
-COPY --from=registration-client registration-client ./registration-client
+COPY --from=registration-client /app/registration-client ./registration-client
 COPY scripts/docker-init.sh ./docker-init.sh
 
 RUN ["chmod", "+x", "docker-init.sh"]

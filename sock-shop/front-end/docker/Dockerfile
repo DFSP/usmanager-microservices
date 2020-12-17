@@ -21,7 +21,7 @@ COPY --from=builder /tmp/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./
-COPY --from=registration-client registration-client registration-client
+COPY --from=registration-client /app/registration-client .
 COPY scripts/docker-init.sh docker-init.sh
 
 ENV NODE_ENV "production"

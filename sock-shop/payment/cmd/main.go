@@ -112,7 +112,7 @@ func main() {
 	apiClient := registration.NewAPIClient(registration.NewConfiguration())
 
 	for index := 0; index < 5; index++ {
-		_, err := apiClient.EndpointsApi.Register(ctx)
+		_, err := apiClient.EndpointsApi.RegisterEndpoint(ctx)
 		if err != nil {
 			logger.Log("Error", "Fail to register app", "err", err)
 		} else {

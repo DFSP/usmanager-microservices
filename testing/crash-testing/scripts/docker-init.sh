@@ -1,1 +1,0 @@
-This is a script designed to crash the container, to allow us to test the crash recovery system.
