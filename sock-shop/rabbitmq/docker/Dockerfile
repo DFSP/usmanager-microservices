@@ -10,5 +10,5 @@ RUN ["chmod", "+x", "docker-init.sh"]
 ENTRYPOINT ["./docker-init.sh"]
 
 # rabbitmq ports: 4369 5671 5672 25672
-# registration-server, externalPort, internalPort, hostname
+# registration-server, externalPort, internalPort, hostname, registration-client port
 CMD ["127.0.0.1:8761", "5672", "5672", "127.0.0.1", "1919"]

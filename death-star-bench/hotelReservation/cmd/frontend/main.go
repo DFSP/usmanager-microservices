@@ -4,14 +4,17 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"github.com/usmanager/registration-client-go"
 	"io/ioutil"
 	"log"
 	"os"
 	"strconv"
+	"time"
 
 	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
 	"github.com/usmanager/microservices/death-star-bench/hotelReservation/services/frontend"
 	"github.com/usmanager/microservices/death-star-bench/hotelReservation/tracing"
+	"github.com/usmanager/registration-client-go"
 )
 
 func main() {
@@ -47,6 +50,18 @@ func main() {
 	registry, err := registry.NewClient(*consuladdr)
 	if err != nil {
 		panic(err)
+	}
+
+	apiClient := registration.NewAPIClient(registration.NewConfiguration())
+
+	for index := 0; index < 5; index++ {
+		_, err := apiClient.EndpointsApi.RegisterEndpoint(ctx)
+		if err != nil {
+			logger.Log("Error", "Fail to register app", "err", err)
+		} else {
+			break
+		}
+		time.Sleep(5 * time.Second)
 	}
 
 	srv := &frontend.Server{

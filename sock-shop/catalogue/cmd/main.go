@@ -43,7 +43,7 @@ import (
 	"path/filepath"
 
 	"github.com/usmanager/manager/microservices/sock-shop/catalogue"
-	"github.com/usmanager/manager/registration-client-go"
+	"github.com/usmanager/registration-client-go"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"

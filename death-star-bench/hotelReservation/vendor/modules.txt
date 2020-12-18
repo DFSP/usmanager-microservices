@@ -48,6 +48,25 @@ github.com/uber/jaeger-client-go/thrift-gen/zipkincore
 github.com/uber/jaeger-client-go/utils
 # github.com/uber/jaeger-lib v1.4.0
 github.com/uber/jaeger-lib/metrics
+# github.com/usmanager/microservices/death-star-bench/hotelReservation v0.0.0-20201218160604-feb6865495e5
+github.com/usmanager/microservices/death-star-bench/hotelReservation/dialer
+github.com/usmanager/microservices/death-star-bench/hotelReservation/registry
+github.com/usmanager/microservices/death-star-bench/hotelReservation/services/frontend
+github.com/usmanager/microservices/death-star-bench/hotelReservation/services/geo
+github.com/usmanager/microservices/death-star-bench/hotelReservation/services/geo/proto
+github.com/usmanager/microservices/death-star-bench/hotelReservation/services/profile
+github.com/usmanager/microservices/death-star-bench/hotelReservation/services/profile/proto
+github.com/usmanager/microservices/death-star-bench/hotelReservation/services/rate
+github.com/usmanager/microservices/death-star-bench/hotelReservation/services/rate/proto
+github.com/usmanager/microservices/death-star-bench/hotelReservation/services/recommendation
+github.com/usmanager/microservices/death-star-bench/hotelReservation/services/recommendation/proto
+github.com/usmanager/microservices/death-star-bench/hotelReservation/services/reservation
+github.com/usmanager/microservices/death-star-bench/hotelReservation/services/reservation/proto
+github.com/usmanager/microservices/death-star-bench/hotelReservation/services/search
+github.com/usmanager/microservices/death-star-bench/hotelReservation/services/search/proto
+github.com/usmanager/microservices/death-star-bench/hotelReservation/services/user
+github.com/usmanager/microservices/death-star-bench/hotelReservation/services/user/proto
+github.com/usmanager/microservices/death-star-bench/hotelReservation/tracing
 # golang.org/x/net v0.0.0-20180307205306-07e8617a6db2
 golang.org/x/net/context
 golang.org/x/net/http2

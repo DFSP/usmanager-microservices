@@ -30,6 +30,10 @@ github.com/uber/jaeger-client-go v2.11.2+incompatible h1:D2idO5gYBl+40qnsowJaqtw
 github.com/uber/jaeger-client-go v2.11.2+incompatible/go.mod h1:WVhlPFC8FDjOFMMWRy2pZqQJSXxYSwNYOkTr/Z6d3Kk=
 github.com/uber/jaeger-lib v1.4.0 h1:FiI99eCazm7u6tdv4Z+9sBXNrC9sHz43kfKIJaCDqCE=
 github.com/uber/jaeger-lib v1.4.0/go.mod h1:ComeNDZlWwrWnDv8aPp0Ba6+uUTzImX/AauajbLI56U=
+github.com/usmanager/manager v0.0.0-20201218000309-c68feca7efa5 h1:46NNVjvhYUOZqBwbcr1pV/Ze16Ey41af37qvy2TXHsw=
+github.com/usmanager/microservices v0.0.0-20201218160604-feb6865495e5 h1:UTrnFRi/Bf7/Fe4NrW10ck2BhZuFPGaQbr/sN0rRqIo=
+github.com/usmanager/microservices/death-star-bench/hotelReservation v0.0.0-20201218160604-feb6865495e5 h1:V2Oh/2atidrMARI/POjYicSyTAETEtV+sxwEo1pxJSY=
+github.com/usmanager/microservices/death-star-bench/hotelReservation v0.0.0-20201218160604-feb6865495e5/go.mod h1:VslnY+mHt/iUYolX9W0uDk41WFOYsWD2BU4A46iuky0=
 golang.org/x/net v0.0.0-20180307205306-07e8617a6db2 h1:6H9rOTmPwH84rno4US1UwrJrMnHHkuosRL1Nmxujj9Q=
 golang.org/x/net v0.0.0-20180307205306-07e8617a6db2/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
 golang.org/x/text v0.3.0 h1:g61tztE5qeGQ89tm6NTjjM9VPIm088od1l6aSorWRWg=

@@ -8,7 +8,6 @@ COPY data /go/src/github.com/usmanager/manager/microservices/hotelReservation/da
 COPY dialer /go/src/github.com/usmanager/manager/microservices/hotelReservation/dialer
 COPY registry /go/src/github.com/usmanager/manager/microservices/hotelReservation/registry
 COPY services/frontend /go/src/github.com/usmanager/manager/microservices/hotelReservation/services/frontend
-COPY vendor /go/src/github.com/usmanager/manager/microservices/hotelReservation/vendor
 COPY wrk2_lua_scripts /go/src/github.com/usmanager/manager/microservices/hotelReservation/wrk2_lua_scripts
 COPY config.json go.mod Gopkg.toml /go/src/github.com/usmanager/manager/microservices/hotelReservation/
 WORKDIR /go/src/github.com/usmanager/manager/microservices/hotelReservation/cmd/frontend/
@@ -24,8 +23,8 @@ mkdir /app
 WORKDIR /app
 COPY --from=build /app/frontend frontend
 COPY --from=registration-client /app/registration-client .
-COPY scripts/docker-init.sh docker-init.sh
+COPY --from=build /go/src/github.com/usmanager/manager/microservices/hotelReservation/services/frontend/scripts/docker-init.sh docker-init.sh
 RUN ["chmod", "+x", "docker-init.sh"]
 ENTRYPOINT ["./docker-init.sh"]
-# registration-server, externalPort, internalPort, hostname
-CMD ["127.0.0.1:8761", "8080", "80", "127.0.0.1"]
+# registration-server, externalPort, internalPort, hostname, registration-client port
+CMD ["127.0.0.1:8761", "8080", "80", "127.0.0.1", "1906"]
