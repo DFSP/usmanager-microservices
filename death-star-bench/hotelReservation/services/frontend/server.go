@@ -3,6 +3,7 @@ package frontend
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/gorilla/mux"
 	"github.com/opentracing/opentracing-go"
 	"github.com/usmanager/microservices/death-star-bench/hotelReservation/dialer"
 	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
@@ -11,7 +12,8 @@ import (
 	"github.com/usmanager/microservices/death-star-bench/hotelReservation/services/reservation/proto"
 	"github.com/usmanager/microservices/death-star-bench/hotelReservation/services/search/proto"
 	"github.com/usmanager/microservices/death-star-bench/hotelReservation/services/user/proto"
-	"github.com/usmanager/microservices/death-star-bench/hotelReservation/tracing"
+	"github.com/usmanager/registration-client-go"
+	"golang.org/x/net/context"
 	"net/http"
 	"strconv"
 )
@@ -35,46 +37,38 @@ func (s *Server) Run() error {
 		return fmt.Errorf("server port must be set")
 	}
 
-	if err := s.initSearchClient("srv-search"); err != nil {
-		return err
-	}
-
-	if err := s.initProfileClient("srv-profile"); err != nil {
-		return err
-	}
-
-	if err := s.initRecommendationClient("srv-recommendation"); err != nil {
-		return err
-	}
-
-	if err := s.initUserClient("srv-user"); err != nil {
-		return err
-	}
-
-	if err := s.initReservation("srv-reservation"); err != nil {
-		return err
-	}
-
 	// fmt.Printf("frontend before mux\n")
 
-	mux := tracing.NewServeMux(s.Tracer)
-	mux.Handle("/", http.FileServer(http.Dir("services/frontend/static")))
-	mux.Handle("/hotels", http.HandlerFunc(s.searchHandler))
-	mux.Handle("/recommendations", http.HandlerFunc(s.recommendHandler))
-	mux.Handle("/user", http.HandlerFunc(s.userHandler))
-	mux.Handle("/reservation", http.HandlerFunc(s.reservationHandler))
+	router := mux.NewRouter()
+	router.Handle("/", http.FileServer(http.Dir("services/frontend/static")))
+	router.Handle("/hotels", http.HandlerFunc(s.searchHandler))
+	router.Handle("/recommendations", http.HandlerFunc(s.recommendHandler))
+	router.Handle("/user", http.HandlerFunc(s.userHandler))
+	router.Handle("/reservation", http.HandlerFunc(s.reservationHandler))
 
-	// fmt.Printf("frontend starts serving\n")
+	 fmt.Printf("Frontend start serving at port %d\n", s.Port)
 
-	return http.ListenAndServe(fmt.Sprintf(":%d", s.Port), mux)
+	return http.ListenAndServe(fmt.Sprintf(":%d", s.Port), router)
 }
 
-func (s *Server) initSearchClient(name string) error {
-	conn, err := dialer.Dial(
-		name,
-		dialer.WithTracer(s.Tracer),
-		dialer.WithBalancer(s.Registry.Client),
-	)
+func getEndpoint(srv string) (*registration.Endpoint, error) {
+	service := "HOTEL_RESERVATION_" + srv
+	ctx := context.Background()
+	apiClient := registration.NewAPIClient(registration.NewConfiguration())
+	endpoint, _, err := apiClient.EndpointsApi.GetServiceEndpoint(ctx, service)
+	if err != nil {
+		return nil, fmt.Errorf("get service %s endpoint error: %v", service, err)
+	}
+	return &endpoint, nil
+}
+
+func (s *Server) getSearchClient() error {
+	service := "SEARCH"
+	endpoint, err := getEndpoint(service)
+	if err != nil {
+		return fmt.Errorf("get service %s endpoint error: %v", service, err)
+	}
+	conn, err := dialer.Dial(endpoint.Endpoint)
 	if err != nil {
 		return fmt.Errorf("dialer error: %v", err)
 	}
@@ -82,12 +76,13 @@ func (s *Server) initSearchClient(name string) error {
 	return nil
 }
 
-func (s *Server) initProfileClient(name string) error {
-	conn, err := dialer.Dial(
-		name,
-		dialer.WithTracer(s.Tracer),
-		dialer.WithBalancer(s.Registry.Client),
-	)
+func (s *Server) getProfileClient() error {
+	service := "PROFILE"
+	endpoint, err := getEndpoint(service)
+	if err != nil {
+		return fmt.Errorf("get service %s endpoint error: %v", service, err)
+	}
+	conn, err := dialer.Dial(endpoint.Endpoint)
 	if err != nil {
 		return fmt.Errorf("dialer error: %v", err)
 	}
@@ -95,12 +90,13 @@ func (s *Server) initProfileClient(name string) error {
 	return nil
 }
 
-func (s *Server) initRecommendationClient(name string) error {
-	conn, err := dialer.Dial(
-		name,
-		dialer.WithTracer(s.Tracer),
-		dialer.WithBalancer(s.Registry.Client),
-	)
+func (s *Server) getRecommendationClient() error {
+	service := "RECOMMENDATION"
+	endpoint, err := getEndpoint(service)
+	if err != nil {
+		return fmt.Errorf("get service %s endpoint error: %v", service, err)
+	}
+	conn, err := dialer.Dial(endpoint.Endpoint)
 	if err != nil {
 		return fmt.Errorf("dialer error: %v", err)
 	}
@@ -108,12 +104,13 @@ func (s *Server) initRecommendationClient(name string) error {
 	return nil
 }
 
-func (s *Server) initUserClient(name string) error {
-	conn, err := dialer.Dial(
-		name,
-		dialer.WithTracer(s.Tracer),
-		dialer.WithBalancer(s.Registry.Client),
-	)
+func (s *Server) getUserClient() error {
+	service := "USER"
+	endpoint, err := getEndpoint(service)
+	if err != nil {
+		return fmt.Errorf("get service %s endpoint error: %v", service, err)
+	}
+	conn, err := dialer.Dial(endpoint.Endpoint)
 	if err != nil {
 		return fmt.Errorf("dialer error: %v", err)
 	}
@@ -121,12 +118,13 @@ func (s *Server) initUserClient(name string) error {
 	return nil
 }
 
-func (s *Server) initReservation(name string) error {
-	conn, err := dialer.Dial(
-		name,
-		dialer.WithTracer(s.Tracer),
-		dialer.WithBalancer(s.Registry.Client),
-	)
+func (s *Server) getReservation() error {
+	service := "RESERVATION"
+	endpoint, err := getEndpoint(service)
+	if err != nil {
+		return fmt.Errorf("get service %s endpoint error: %v", service, err)
+	}
+	conn, err := dialer.Dial(endpoint.Endpoint)
 	if err != nil {
 		return fmt.Errorf("dialer error: %v", err)
 	}
@@ -162,6 +160,11 @@ func (s *Server) searchHandler(w http.ResponseWriter, r *http.Request) {
 	// fmt.Printf("starts searchHandler querying downstream\n")
 
 	// search for best hotels
+	err := s.getSearchClient()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 	searchResp, err := s.searchClient.Nearby(ctx, &search.NearbyRequest{
 		Lat:     lat,
 		Lon:     lon,
@@ -184,6 +187,11 @@ func (s *Server) searchHandler(w http.ResponseWriter, r *http.Request) {
 		locale = "en"
 	}
 
+	err = s.getReservation()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 	reservationResp, err := s.reservationClient.CheckAvailability(ctx, &reservation.Request{
 		CustomerName: "",
 		HotelId:      searchResp.HotelIds,
@@ -196,6 +204,11 @@ func (s *Server) searchHandler(w http.ResponseWriter, r *http.Request) {
 	// fmt.Printf("searchHandler gets reserveResp.HotelId = %s\n", reservationResp.HotelId)
 
 	// hotel profiles
+	err = s.getProfileClient()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 	profileResp, err := s.profileClient.GetProfiles(ctx, &profile.Request{
 		HotelIds: reservationResp.HotelId,
 		Locale:   locale,
@@ -231,6 +244,11 @@ func (s *Server) recommendHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// recommend hotels
+	err := s.getRecommendationClient()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 	recResp, err := s.recommendationClient.GetRecommendations(ctx, &recommendation.Request{
 		Require: require,
 		Lat:     float64(lat),
@@ -248,6 +266,11 @@ func (s *Server) recommendHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// hotel profiles
+	err = s.getProfileClient()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 	profileResp, err := s.profileClient.GetProfiles(ctx, &profile.Request{
 		HotelIds: recResp.HotelIds,
 		Locale:   locale,
@@ -271,6 +294,11 @@ func (s *Server) userHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Check username and password
+	err := s.getUserClient()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 	recResp, err := s.userClient.CheckUser(ctx, &user.Request{
 		Username: username,
 		Password: password,
@@ -332,6 +360,11 @@ func (s *Server) reservationHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Check username and password
+	err := s.getUserClient()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 	recResp, err := s.userClient.CheckUser(ctx, &user.Request{
 		Username: username,
 		Password: password,
@@ -347,6 +380,11 @@ func (s *Server) reservationHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Make reservation
+	err = s.getReservation()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 	resResp, err := s.reservationClient.MakeReservation(ctx, &reservation.Request{
 		CustomerName: customerName,
 		HotelId:      []string{hotelId},

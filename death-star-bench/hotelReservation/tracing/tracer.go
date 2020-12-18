@@ -22,7 +22,7 @@ func Init(serviceName, host string) (opentracing.Tracer, error) {
 		},
 	}
 
-	tracer, _, err := cfg.New(serviceName)
+	tracer, _, err := cfg.New(serviceName, nil)
 	if err != nil {
 		return nil, fmt.Errorf("new tracer error: %v", err)
 	}

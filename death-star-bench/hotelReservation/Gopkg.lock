@@ -68,12 +68,6 @@
   revision = "b8bc1bf767474819792c23f32d8286a45736f1c6"
 
 [[projects]]
-  name = "github.com/olivere/grpc"
-  packages = ["lb/consul"]
-  revision = "fec704fef18da7cd0da77c6840bed0b25b07d570"
-  version = "v1.0.0"
-
-[[projects]]
   branch = "master"
   name = "github.com/opentracing-contrib/go-stdlib"
   packages = ["nethttp"]

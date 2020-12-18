@@ -32,7 +32,7 @@ require (
 	github.com/prometheus/procfs v0.0.0-20160411190841-abf152e5f3e9 // indirect
 	github.com/rcrowley/go-metrics v0.0.0-20161128210544-1f30fe9094a5 // indirect
 	github.com/stretchr/testify v1.6.1 // indirect
-	github.com/usmanager/registration-client-go v0.0.0-20201105160201-432fbb7cd4ff
+	github.com/usmanager/registration-client-go v0.0.0-20201218175734-f45988d56f2b
 	github.com/weaveworks/common v0.0.0-20170918142215-df441dcd9cfd
 	google.golang.org/genproto v0.0.0-20201105153401-9d023cd09d72 // indirect
 	google.golang.org/grpc v1.33.1 // indirect

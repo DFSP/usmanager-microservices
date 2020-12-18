@@ -1,74 +1,42 @@
 package main
 
 import (
-	"encoding/json"
 	"flag"
-	"fmt"
-	"github.com/usmanager/registration-client-go"
-	"io/ioutil"
-	"log"
-	"os"
-	"strconv"
-	"time"
-
-	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
 	"github.com/usmanager/microservices/death-star-bench/hotelReservation/services/frontend"
-	"github.com/usmanager/microservices/death-star-bench/hotelReservation/tracing"
 	"github.com/usmanager/registration-client-go"
+	"golang.org/x/net/context"
+	"log"
+	"time"
 )
 
+var port int
+
+func init() {
+	flag.IntVar(&port, "port", 5000, "The server port")
+}
+
 func main() {
-	jsonFile, err := os.Open("config.json")
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	defer jsonFile.Close()
-
-	byteValue, _ := ioutil.ReadAll(jsonFile)
-
-	var result map[string]string
-	json.Unmarshal([]byte(byteValue), &result)
-
-	serv_port, _ := strconv.Atoi(result["FrontendPort"])
-	serv_ip := result["FrontendIP"]
-
-	fmt.Printf("frontend ip = %s, port = %d\n", serv_ip, serv_port)
-
-	var (
-		// port       = flag.Int("port", 5000, "The server port")
-		jaegeraddr = flag.String("jaegeraddr", result["jaegerAddress"], "Jaeger address")
-		consuladdr = flag.String("consuladdr", result["consulAddress"], "Consul address")
-	)
 	flag.Parse()
-
-	tracer, err := tracing.Init("frontend", *jaegeraddr)
-	if err != nil {
-		panic(err)
-	}
-
-	registry, err := registry.NewClient(*consuladdr)
-	if err != nil {
-		panic(err)
-	}
 
 	apiClient := registration.NewAPIClient(registration.NewConfiguration())
 
+	ctx := context.Background()
 	for index := 0; index < 5; index++ {
 		_, err := apiClient.EndpointsApi.RegisterEndpoint(ctx)
-		if err != nil {
-			logger.Log("Error", "Fail to register app", "err", err)
-		} else {
+		if err == nil {
 			break
 		}
-		time.Sleep(5 * time.Second)
+		if index >= 4 {
+			log.Fatal("Failed to register app: ", err, ". Giving up")
+		} else {
+			log.Print("Failed to register app. Error: ", err)
+			time.Sleep(5 * time.Second)
+		}
 	}
 
 	srv := &frontend.Server{
-		Registry: registry,
-		Tracer:   tracer,
-		IpAddr:   serv_ip,
-		Port:     serv_port,
+		Port:     port,
 	}
+
 	log.Fatal(srv.Run())
 }
