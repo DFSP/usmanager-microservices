@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"github.com/harlow/go-micro-services/registry"
-	"github.com/harlow/go-micro-services/services/user"
-	"github.com/harlow/go-micro-services/tracing"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/services/user"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/tracing"
 	"io/ioutil"
 	"log"
 	"os"
@@ -30,7 +30,7 @@ func main() {
 	mongo_session := initializeDatabase(result["UserMongoAddress"])
 	defer mongo_session.Close()
 	serv_port, _ := strconv.Atoi(result["UserPort"])
-	serv_ip   := result["UserIP"]
+	serv_ip := result["UserIP"]
 
 	fmt.Printf("user ip = %s, port = %d\n", serv_ip, serv_port)
 
@@ -52,11 +52,11 @@ func main() {
 	}
 
 	srv := &user.Server{
-		Tracer:   tracer,
+		Tracer: tracer,
 		// Port:     *port,
-		Registry: registry,
-		Port:     serv_port,
-		IpAddr:	  serv_ip,
+		Registry:     registry,
+		Port:         serv_port,
+		IpAddr:       serv_ip,
 		MongoSession: mongo_session,
 	}
 	log.Fatal(srv.Run())

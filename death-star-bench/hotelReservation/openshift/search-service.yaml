@@ -8,11 +8,11 @@ metadata:
   name: search
 spec:
   ports:
-  - name: "8082"
-    port: 8082
-    targetPort: 8082
+    - name: "8082"
+      port: 8082
+      targetPort: 8082
   selector:
     death-star-project: hotel-res
     app-name: search
 status:
-  loadBalancer: {}
+  loadBalancer: { }

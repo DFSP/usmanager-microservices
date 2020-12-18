@@ -8,11 +8,11 @@ metadata:
   name: mongodb-user
 spec:
   ports:
-  - name: "27023"
-    port: 27023
-    targetPort: 27017
+    - name: "27023"
+      port: 27023
+      targetPort: 27017
   selector:
     death-star-project: hotel-res
     app-name: mongodb-user
 status:
-  loadBalancer: {}
+  loadBalancer: { }

@@ -8,11 +8,11 @@ metadata:
   name: profile
 spec:
   ports:
-  - name: "8081"
-    port: 8081
-    targetPort: 8081
+    - name: "8081"
+      port: 8081
+      targetPort: 8081
   selector:
     death-star-project: hotel-res
     app-name: profile
 status:
-  loadBalancer: {}
+  loadBalancer: { }

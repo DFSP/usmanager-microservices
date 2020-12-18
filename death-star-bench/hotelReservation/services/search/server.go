@@ -10,12 +10,12 @@ import (
 	"time"
 
 	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
-	"github.com/harlow/go-micro-services/dialer"
-	"github.com/harlow/go-micro-services/registry"
-	geo "github.com/harlow/go-micro-services/services/geo/proto"
-	rate "github.com/harlow/go-micro-services/services/rate/proto"
-	pb "github.com/harlow/go-micro-services/services/search/proto"
 	opentracing "github.com/opentracing/opentracing-go"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/dialer"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
+	geo "github.com/usmanager/microservices/death-star-bench/hotelReservation/services/geo/proto"
+	rate "github.com/usmanager/microservices/death-star-bench/hotelReservation/services/rate/proto"
+	pb "github.com/usmanager/microservices/death-star-bench/hotelReservation/services/search/proto"
 	context "golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/keepalive"
@@ -30,7 +30,7 @@ type Server struct {
 
 	Tracer   opentracing.Tracer
 	Port     int
-	IpAddr	 string
+	IpAddr   string
 	Registry *registry.Client
 }
 

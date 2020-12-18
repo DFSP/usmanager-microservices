@@ -8,8 +8,8 @@ metadata:
   name: geo
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   resources:
     requests:
       storage: 100Mi
-status: {}
+status: { }

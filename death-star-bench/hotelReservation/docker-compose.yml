@@ -46,9 +46,9 @@ services:
       - consul
     restart: always
     cpuset: "2"
-    # environment:
+      # environment:
       # - GRPC_GO_LOG_VERBOSITY_LEVEL=2
-      # - GRPC_GO_LOG_SEVERITY_LEVEL=info
+    # - GRPC_GO_LOG_SEVERITY_LEVEL=info
 
   geo:
     build: .
@@ -137,7 +137,7 @@ services:
     # hostname: user-memcached
     container_name: 'hotel_reserv_rate_mmc'
     ports:
-     - 11212:11211
+      - 11212:11211
     restart: always
     environment:
       - MEMCACHED_CACHE_SIZE=128
@@ -152,7 +152,7 @@ services:
     # hostname: user-memcached
     container_name: 'hotel_reserv_profile_mmc'
     ports:
-     - 11213:11211
+      - 11213:11211
     restart: always
     environment:
       - MEMCACHED_CACHE_SIZE=128
@@ -167,7 +167,7 @@ services:
     # hostname: user-memcached
     container_name: 'hotel_reserv_reservation_mmc'
     ports:
-     - 11214:11211
+      - 11214:11211
     restart: always
     environment:
       - MEMCACHED_CACHE_SIZE=128
@@ -186,7 +186,7 @@ services:
     restart: always
     cpuset: "11"
     volumes:
-      - geo:/data/db  
+      - geo:/data/db
 
   mongodb-profile:
     image: mongo
@@ -197,7 +197,7 @@ services:
     restart: always
     cpuset: "12"
     volumes:
-      - profile:/data/db    
+      - profile:/data/db
 
   mongodb-rate:
     image: mongo
@@ -208,7 +208,7 @@ services:
     restart: always
     cpuset: "13"
     volumes:
-      - rate:/data/db   
+      - rate:/data/db
 
   mongodb-recommendation:
     image: mongo
@@ -220,7 +220,7 @@ services:
     cpuset: "14"
     volumes:
       - recommendation:/data/db
-    
+
   mongodb-reservation:
     image: mongo
     container_name: 'hotel_reserv_reservation_mongo'
@@ -230,7 +230,7 @@ services:
     restart: always
     cpuset: "15"
     volumes:
-      - reservation:/data/db 
+      - reservation:/data/db
 
   mongodb-user:
     image: mongo
@@ -242,7 +242,7 @@ services:
     cpuset: "16"
     volumes:
       - user:/data/db
-    
+
 volumes:
   geo:
   profile:

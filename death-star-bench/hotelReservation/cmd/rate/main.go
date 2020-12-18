@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"github.com/harlow/go-micro-services/registry"
-	"github.com/harlow/go-micro-services/services/rate"
-	"github.com/harlow/go-micro-services/tracing"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/services/rate"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/tracing"
 	"io/ioutil"
 	"log"
 	"os"
@@ -38,7 +38,7 @@ func main() {
 
 	defer mongo_session.Close()
 	serv_port, _ := strconv.Atoi(result["RatePort"])
-	serv_ip   := result["RateIP"]
+	serv_ip := result["RateIP"]
 
 	fmt.Printf("rate ip = %s, port = %d\n", serv_ip, serv_port)
 
@@ -60,13 +60,13 @@ func main() {
 	}
 
 	srv := &rate.Server{
-		Tracer:   tracer,
+		Tracer: tracer,
 		// Port:     *port,
-		Registry: registry,
-		Port:     serv_port,
-		IpAddr:	  serv_ip,
+		Registry:     registry,
+		Port:         serv_port,
+		IpAddr:       serv_ip,
 		MongoSession: mongo_session,
-		MemcClient: memc_client,
+		MemcClient:   memc_client,
 	}
 	log.Fatal(srv.Run())
 }

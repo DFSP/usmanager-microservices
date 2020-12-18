@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
 	"github.com/hailocab/go-geoindex"
-	"github.com/harlow/go-micro-services/registry"
-	pb "github.com/harlow/go-micro-services/services/recommendation/proto"
 	"github.com/opentracing/opentracing-go"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
+	pb "github.com/usmanager/microservices/death-star-bench/hotelReservation/services/recommendation/proto"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/keepalive"
@@ -27,12 +27,12 @@ const name = "srv-recommendation"
 
 // Server implements the recommendation service
 type Server struct {
-	hotels map[string]Hotel
-	Tracer   opentracing.Tracer
-	Port     int
-	IpAddr	 string
-	MongoSession	*mgo.Session
-	Registry *registry.Client
+	hotels       map[string]Hotel
+	Tracer       opentracing.Tracer
+	Port         int
+	IpAddr       string
+	MongoSession *mgo.Session
+	Registry     *registry.Client
 }
 
 // Run starts the server

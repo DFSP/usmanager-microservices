@@ -8,9 +8,9 @@ import (
 	"log"
 	"os"
 
-	"github.com/harlow/go-micro-services/registry"
-	"github.com/harlow/go-micro-services/services/search"
-	"github.com/harlow/go-micro-services/tracing"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/services/search"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/tracing"
 	"strconv"
 )
 
@@ -28,7 +28,7 @@ func main() {
 	json.Unmarshal([]byte(byteValue), &result)
 
 	serv_port, _ := strconv.Atoi(result["SearchPort"])
-	serv_ip   := result["SearchIP"]
+	serv_ip := result["SearchIP"]
 
 	fmt.Printf("search ip = %s, port = %d\n", serv_ip, serv_port)
 
@@ -50,10 +50,10 @@ func main() {
 	}
 
 	srv := &search.Server{
-		Tracer:   tracer,
+		Tracer: tracer,
 		// Port:     *port,
 		Port:     serv_port,
-		IpAddr:	  serv_ip,
+		IpAddr:   serv_ip,
 		Registry: registry,
 	}
 	log.Fatal(srv.Run())

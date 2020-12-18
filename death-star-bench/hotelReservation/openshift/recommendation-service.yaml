@@ -8,11 +8,11 @@ metadata:
   name: recommendation
 spec:
   ports:
-  - name: "8085"
-    port: 8085
-    targetPort: 8085
+    - name: "8085"
+      port: 8085
+      targetPort: 8085
   selector:
     death-star-project: hotel-res
     app-name: recommendation
 status:
-  loadBalancer: {}
+  loadBalancer: { }

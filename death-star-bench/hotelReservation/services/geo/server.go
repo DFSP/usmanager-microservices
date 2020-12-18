@@ -13,9 +13,9 @@ import (
 
 	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
 	"github.com/hailocab/go-geoindex"
-	"github.com/harlow/go-micro-services/registry"
-	pb "github.com/harlow/go-micro-services/services/geo/proto"
 	opentracing "github.com/opentracing/opentracing-go"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
+	pb "github.com/usmanager/microservices/death-star-bench/hotelReservation/services/geo/proto"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/keepalive"
@@ -32,11 +32,11 @@ type Server struct {
 	index *geoindex.ClusteringIndex
 	uuid  string
 
-	Registry *registry.Client
-	Tracer   opentracing.Tracer
-	Port     int
-	IpAddr	 string
-	MongoSession 	*mgo.Session
+	Registry     *registry.Client
+	Tracer       opentracing.Tracer
+	Port         int
+	IpAddr       string
+	MongoSession *mgo.Session
 }
 
 // Run starts the server
@@ -56,10 +56,10 @@ func (s *Server) Run() error {
 	// }
 
 	srv := grpc.NewServer(
-		grpc.KeepaliveParams(keepalive.ServerParameters {
+		grpc.KeepaliveParams(keepalive.ServerParameters{
 			Timeout: 120 * time.Second,
 		}),
-		grpc.KeepaliveEnforcementPolicy(keepalive.EnforcementPolicy {
+		grpc.KeepaliveEnforcementPolicy(keepalive.EnforcementPolicy{
 			PermitWithoutStream: true,
 		}),
 		grpc.UnaryInterceptor(

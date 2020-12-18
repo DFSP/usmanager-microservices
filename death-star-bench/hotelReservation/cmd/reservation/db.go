@@ -1,11 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"log"
 	"strconv"
-	"fmt"
 )
 
 type Reservation struct {
@@ -17,8 +17,8 @@ type Reservation struct {
 }
 
 type Number struct {
-	HotelId      string `bson:"hotelId"`
-	Number       int    `bson:"numberOfRoom"`
+	HotelId string `bson:"hotelId"`
+	Number  int    `bson:"numberOfRoom"`
 }
 
 func initializeDatabase(url string) *mgo.Session {
@@ -34,7 +34,7 @@ func initializeDatabase(url string) *mgo.Session {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if count == 0{
+	if count == 0 {
 		err = c.Insert(&Reservation{"4", "Alice", "2015-04-09", "2015-04-10", 1})
 		if err != nil {
 			log.Fatal(err)
@@ -46,7 +46,7 @@ func initializeDatabase(url string) *mgo.Session {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if count == 0{
+	if count == 0 {
 		err = c.Insert(&Number{"1", 200})
 		if err != nil {
 			log.Fatal(err)
@@ -57,7 +57,7 @@ func initializeDatabase(url string) *mgo.Session {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if count == 0{
+	if count == 0 {
 		err = c.Insert(&Number{"2", 200})
 		if err != nil {
 			log.Fatal(err)
@@ -68,7 +68,7 @@ func initializeDatabase(url string) *mgo.Session {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if count == 0{
+	if count == 0 {
 		err = c.Insert(&Number{"3", 200})
 		if err != nil {
 			log.Fatal(err)
@@ -79,7 +79,7 @@ func initializeDatabase(url string) *mgo.Session {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if count == 0{
+	if count == 0 {
 		err = c.Insert(&Number{"4", 200})
 		if err != nil {
 			log.Fatal(err)
@@ -90,7 +90,7 @@ func initializeDatabase(url string) *mgo.Session {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if count == 0{
+	if count == 0 {
 		err = c.Insert(&Number{"5", 200})
 		if err != nil {
 			log.Fatal(err)
@@ -101,7 +101,7 @@ func initializeDatabase(url string) *mgo.Session {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if count == 0{
+	if count == 0 {
 		err = c.Insert(&Number{"6", 200})
 		if err != nil {
 			log.Fatal(err)
@@ -115,12 +115,12 @@ func initializeDatabase(url string) *mgo.Session {
 			log.Fatal(err)
 		}
 		room_num := 200
-		if i % 3 == 1 {
+		if i%3 == 1 {
 			room_num = 300
-		} else if i % 3 == 2 {
+		} else if i%3 == 2 {
 			room_num = 250
 		}
-		if count == 0{
+		if count == 0 {
 			err = c.Insert(&Number{hotel_id, room_num})
 			if err != nil {
 				log.Fatal(err)
@@ -132,7 +132,6 @@ func initializeDatabase(url string) *mgo.Session {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 
 	return session
 }

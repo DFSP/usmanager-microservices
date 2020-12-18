@@ -3,18 +3,17 @@ package frontend
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/harlow/go-micro-services/services/recommendation/proto"
-	"github.com/harlow/go-micro-services/services/reservation/proto"
-	"github.com/harlow/go-micro-services/services/user/proto"
+	"github.com/opentracing/opentracing-go"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/dialer"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/services/profile/proto"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/services/recommendation/proto"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/services/reservation/proto"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/services/search/proto"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/services/user/proto"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/tracing"
 	"net/http"
 	"strconv"
-
-	"github.com/harlow/go-micro-services/dialer"
-	"github.com/harlow/go-micro-services/registry"
-	"github.com/harlow/go-micro-services/services/profile/proto"
-	"github.com/harlow/go-micro-services/services/search/proto"
-	"github.com/harlow/go-micro-services/tracing"
-	"github.com/opentracing/opentracing-go"
 )
 
 // Server implements frontend service
@@ -24,10 +23,10 @@ type Server struct {
 	recommendationClient recommendation.RecommendationClient
 	userClient           user.UserClient
 	reservationClient    reservation.ReservationClient
-	IpAddr	 string
-	Port     int
-	Tracer   opentracing.Tracer
-	Registry *registry.Client
+	IpAddr               string
+	Port                 int
+	Tracer               opentracing.Tracer
+	Registry             *registry.Client
 }
 
 // Run the server

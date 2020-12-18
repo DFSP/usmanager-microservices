@@ -9,9 +9,9 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/harlow/go-micro-services/registry"
-	"github.com/harlow/go-micro-services/services/frontend"
-	"github.com/harlow/go-micro-services/tracing"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/services/frontend"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/tracing"
 )
 
 func main() {
@@ -28,7 +28,7 @@ func main() {
 	json.Unmarshal([]byte(byteValue), &result)
 
 	serv_port, _ := strconv.Atoi(result["FrontendPort"])
-	serv_ip   := result["FrontendIP"]
+	serv_ip := result["FrontendIP"]
 
 	fmt.Printf("frontend ip = %s, port = %d\n", serv_ip, serv_port)
 
@@ -52,7 +52,7 @@ func main() {
 	srv := &frontend.Server{
 		Registry: registry,
 		Tracer:   tracer,
-		IpAddr:	  serv_ip,
+		IpAddr:   serv_ip,
 		Port:     serv_port,
 	}
 	log.Fatal(srv.Run())

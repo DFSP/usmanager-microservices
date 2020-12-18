@@ -8,11 +8,11 @@ metadata:
   name: memcached-rate
 spec:
   ports:
-  - name: "11212"
-    port: 11212
-    targetPort: 11211
+    - name: "11212"
+      port: 11212
+      targetPort: 11211
   selector:
     death-star-project: hotel-res
     app-name: memcached-rate
 status:
-  loadBalancer: {}
+  loadBalancer: { }

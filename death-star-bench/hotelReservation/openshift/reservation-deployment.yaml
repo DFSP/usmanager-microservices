@@ -12,7 +12,7 @@ spec:
     matchLabels:
       death-star-project: hotel-res
       app-name: reservation
-  strategy: {}
+  strategy: { }
   template:
     metadata:
       name: reservation
@@ -23,26 +23,26 @@ spec:
         sidecar.istio.io/inject: "true"
     spec:
       containers:
-      - command:
-        - reservation
-        env:
-        - name: DLOG
-          value: DEBUG
-        image: image-registry.openshift-image-registry.svc:5000/hotel-res/hotel_reserv_rsv_single_node
-        name: hotel-reserv-reservation
-        ports:
-        - containerPort: 8087
-        resources: {}
-        volumeMounts:
-        - mountPath: /go/src/github.com/harlow/go-micro-services/config.json
-          subPath: config.json
-          name: config-json
+        - command:
+            - reservation
+          env:
+            - name: DLOG
+              value: DEBUG
+          image: image-registry.openshift-image-registry.svc:5000/hotel-res/hotel_reserv_rsv_single_node
+          name: hotel-reserv-reservation
+          ports:
+            - containerPort: 8087
+          resources: { }
+          volumeMounts:
+            - mountPath: /go/src/github.com/usmanager/microservices/death-star-bench/hotelReservation/config.json
+              subPath: config.json
+              name: config-json
       restartPolicy: Always
       volumes:
-      - name: config-json
-        configMap:
-          name: configmap-config-json
-          items:
-          - key: config.json
-            path: config.json
-status: {}
+        - name: config-json
+          configMap:
+            name: configmap-config-json
+            items:
+              - key: config.json
+                path: config.json
+status: { }

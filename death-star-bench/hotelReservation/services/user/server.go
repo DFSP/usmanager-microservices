@@ -2,16 +2,17 @@ package user
 
 import (
 	"crypto/sha256"
+	"gopkg.in/mgo.v2"
+
 	// "encoding/json"
 	"fmt"
 	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
-	"github.com/harlow/go-micro-services/registry"
-	pb "github.com/harlow/go-micro-services/services/user/proto"
 	"github.com/opentracing/opentracing-go"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
+	pb "github.com/usmanager/microservices/death-star-bench/hotelReservation/services/user/proto"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/keepalive"
-	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	// "io/ioutil"
 	"log"
@@ -26,11 +27,11 @@ const name = "srv-user"
 type Server struct {
 	users map[string]string
 
-	Tracer   opentracing.Tracer
-	Registry *registry.Client
-	Port     int
-	IpAddr	 string
-	MongoSession 	*mgo.Session
+	Tracer       opentracing.Tracer
+	Registry     *registry.Client
+	Port         int
+	IpAddr       string
+	MongoSession *mgo.Session
 }
 
 // Run starts the server
@@ -112,9 +113,9 @@ func (s *Server) CheckUser(ctx context.Context, req *pb.Request) (*pb.Result, er
 	// }
 	res.Correct = false
 	if true_pass, found := s.users[req.Username]; found {
-	    res.Correct = pass == true_pass
+		res.Correct = pass == true_pass
 	}
-	
+
 	// res.Correct = user.Password == pass
 
 	// fmt.Printf("CheckUser %d\n", res.Correct)

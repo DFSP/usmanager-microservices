@@ -17,8 +17,7 @@ oc policy add-role-to-user registry-viewer kube:admin -n hotel-res
 oc policy add-role-to-user registry-editor kube:admin -n hotel-res
 
 ./scripts/create-configmaps.sh
-for i in *.yaml
-do
+for i in *.yaml; do
   oc apply -f ${i} -n ${NS} &
 done
 wait
@@ -29,4 +28,3 @@ sleep 30
 oc get pods -n ${NS}
 
 cd - >/dev/null
-

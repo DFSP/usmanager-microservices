@@ -9,13 +9,13 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/harlow/go-micro-services/registry"
-	"github.com/harlow/go-micro-services/services/geo"
-	"github.com/harlow/go-micro-services/tracing"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/services/geo"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/tracing"
 )
 
 func main() {
-	
+
 	jsonFile, err := os.Open("config.json")
 	if err != nil {
 		fmt.Println(err)
@@ -31,10 +31,10 @@ func main() {
 	mongo_session := initializeDatabase(result["GeoMongoAddress"])
 	defer mongo_session.Close()
 	serv_port, _ := strconv.Atoi(result["GeoPort"])
-	serv_ip   := result["GeoIP"]
+	serv_ip := result["GeoIP"]
 
 	fmt.Printf("geo ip = %s, port = %d\n", serv_ip, serv_port)
-	
+
 	var (
 		// port       = flag.Int("port", 8083, "Server port")
 		jaegeraddr = flag.String("jaegeraddr", result["consulAddress"], "Jaeger address")
@@ -54,10 +54,10 @@ func main() {
 
 	srv := &geo.Server{
 		// Port:     *port,
-		Port:     serv_port,
-		IpAddr:	  serv_ip,
-		Tracer:   tracer,
-		Registry: registry,
+		Port:         serv_port,
+		IpAddr:       serv_ip,
+		Tracer:       tracer,
+		Registry:     registry,
 		MongoSession: mongo_session,
 	}
 	log.Fatal(srv.Run())

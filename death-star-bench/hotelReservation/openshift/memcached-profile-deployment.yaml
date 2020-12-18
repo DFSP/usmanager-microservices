@@ -12,7 +12,7 @@ spec:
     matchLabels:
       death-star-project: hotel-res
       app-name: memcached-profile
-  strategy: {}
+  strategy: { }
   template:
     metadata:
       name: memcached-profile
@@ -23,15 +23,15 @@ spec:
         sidecar.istio.io/inject: "true"
     spec:
       containers:
-      - env:
-        - name: MEMCACHED_CACHE_SIZE
-          value: "128"
-        - name: MEMCACHED_THREADS
-          value: "2"
-        image: memcached
-        name: hotel-reserv-profile-mmc
-        ports:
-        - containerPort: 11211
-        resources: {}
+        - env:
+            - name: MEMCACHED_CACHE_SIZE
+              value: "128"
+            - name: MEMCACHED_THREADS
+              value: "2"
+          image: memcached
+          name: hotel-reserv-profile-mmc
+          ports:
+            - containerPort: 11211
+          resources: { }
       restartPolicy: Always
-status: {}
+status: { }

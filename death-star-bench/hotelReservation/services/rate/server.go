@@ -13,9 +13,9 @@ import (
 	"time"
 
 	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
-	"github.com/harlow/go-micro-services/registry"
-	pb "github.com/harlow/go-micro-services/services/rate/proto"
 	"github.com/opentracing/opentracing-go"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
+	pb "github.com/usmanager/microservices/death-star-bench/hotelReservation/services/rate/proto"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/keepalive"
@@ -28,12 +28,12 @@ const name = "srv-rate"
 
 // Server implements the rate service
 type Server struct {
-	Tracer    opentracing.Tracer
-	Port      int
-	IpAddr	 string
-	MongoSession 	*mgo.Session
-	Registry  *registry.Client
-	MemcClient *memcache.Client
+	Tracer       opentracing.Tracer
+	Port         int
+	IpAddr       string
+	MongoSession *mgo.Session
+	Registry     *registry.Client
+	MemcClient   *memcache.Client
 }
 
 // Run starts the server
@@ -133,7 +133,7 @@ func (s *Server) GetRates(ctx context.Context, req *pb.Request) (*pb.Result, err
 			} else {
 				for _, r := range tmpRatePlans {
 					ratePlans = append(ratePlans, r)
-					rate_json , err := json.Marshal(r)
+					rate_json, err := json.Marshal(r)
 					if err != nil {
 						fmt.Printf("json.Marshal err = %s\n", err)
 					}

@@ -21,7 +21,6 @@
 # oc get images | grep hotel-res
 # oc delete image/sha256:xyz
 
-
 cd $(dirname $0)/..
 
 NS=hotel-res
@@ -31,13 +30,12 @@ TLSVERIFY=""
 command -v podman >/dev/null
 NOPODMAN=${?}
 
-if [[ ${NOPODMAN} -eq  0 ]]; then
+if [[ ${NOPODMAN} -eq 0 ]]; then
   EXEC=podman
   TLSVERIFY="--tls-verify=false"
 else
   echo "Using docker, but we recommend to use podman"
 fi
-
 
 #TAG="openshift"
 TAG="latest"
@@ -58,8 +56,7 @@ REGISTRY=$(oc registry info)
 cd ../
 ROOT_FOLDER=$(pwd)
 
-for i in frontend geo profile rate recommend rsv search user
-do
+for i in frontend geo profile rate recommend rsv search user; do
   IMAGE=hotel_reserv_${i}_single_node
   echo Processing image ${IMAGE}
   if [[ $($EXEC images --namespace ${NS} | grep $IMAGE | wc -l) -le 0 ]]; then

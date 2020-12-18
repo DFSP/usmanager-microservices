@@ -1,11 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"log"
 	"strconv"
-	"fmt"
 )
 
 type Hotel struct {
@@ -40,7 +40,7 @@ func initializeDatabase(url string) *mgo.Session {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if count == 0{
+	if count == 0 {
 		err = c.Insert(&Hotel{
 			"1",
 			"Clift Hotel",
@@ -64,7 +64,7 @@ func initializeDatabase(url string) *mgo.Session {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if count == 0{
+	if count == 0 {
 		err = c.Insert(&Hotel{
 			"2",
 			"W San Francisco",
@@ -88,7 +88,7 @@ func initializeDatabase(url string) *mgo.Session {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if count == 0{
+	if count == 0 {
 		err = c.Insert(&Hotel{
 			"3",
 			"Hotel Zetta",
@@ -112,21 +112,21 @@ func initializeDatabase(url string) *mgo.Session {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if count == 0{
+	if count == 0 {
 		err = c.Insert(&Hotel{
-				"4",
-				"Hotel Vitale",
-				"(415) 278-3700",
-				"This waterfront hotel with Bay Bridge views is 3 blocks from the Financial District and a 4-minute walk from the Ferry Building.",
-				&Address{
-					"8",
-					"Mission St",
-					"San Francisco",
-					"CA",
-					"United States",
-					"94105",
-					37.7936,
-					-122.3930}})
+			"4",
+			"Hotel Vitale",
+			"(415) 278-3700",
+			"This waterfront hotel with Bay Bridge views is 3 blocks from the Financial District and a 4-minute walk from the Ferry Building.",
+			&Address{
+				"8",
+				"Mission St",
+				"San Francisco",
+				"CA",
+				"United States",
+				"94105",
+				37.7936,
+				-122.3930}})
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -136,7 +136,7 @@ func initializeDatabase(url string) *mgo.Session {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if count == 0{
+	if count == 0 {
 		err = c.Insert(&Hotel{
 			"5",
 			"Phoenix Hotel",
@@ -160,7 +160,7 @@ func initializeDatabase(url string) *mgo.Session {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if count == 0{
+	if count == 0 {
 		err = c.Insert(&Hotel{
 			"6",
 			"St. Regis San Francisco",
@@ -188,9 +188,9 @@ func initializeDatabase(url string) *mgo.Session {
 			log.Fatal(err)
 		}
 		phone_num := "(415) 284-40" + hotel_id
-		lat := 37.7835 + float32(i)/500.0 * 3
-		lon := -122.41 + float32(i)/500.0 * 4
-		if count == 0{
+		lat := 37.7835 + float32(i)/500.0*3
+		lon := -122.41 + float32(i)/500.0*4
+		if count == 0 {
 			err = c.Insert(&Hotel{
 				hotel_id,
 				"St. Regis San Francisco",
@@ -210,7 +210,6 @@ func initializeDatabase(url string) *mgo.Session {
 			}
 		}
 	}
-
 
 	err = c.EnsureIndexKey("id")
 	if err != nil {

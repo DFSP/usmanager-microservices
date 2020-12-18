@@ -8,8 +8,8 @@ metadata:
   name: reservation
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   resources:
     requests:
       storage: 100Mi
-status: {}
+status: { }

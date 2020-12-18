@@ -34,7 +34,6 @@ const express = require("express"),
     orders = require("./api/orders"),
     user = require("./api/user"),
     metrics = require("./api/metrics"),
-    polyfill = require("babel-polyfill"),
     app = express();
 
 app.use(helpers.rewriteSlash);
@@ -71,8 +70,6 @@ app.use(orders);
 app.use(user);
 
 app.use(helpers.errorHandler);
-
-app.use(polyfill);
 
 const server = app.listen(process.env.PORT || 8079, function () {
     const port = server.address().port;

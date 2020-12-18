@@ -1,19 +1,19 @@
 package main
 
 import (
+	"fmt"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"log"
 	"strconv"
-	"fmt"
 )
 
 type Hotel struct {
-	HId    string        `bson:"hotelId"`
-	HLat   float64       `bson:"lat"`
-	HLon   float64       `bson:"lon"`
-	HRate  float64       `bson:"rate"`
-	HPrice float64       `bson:"price"`
+	HId    string  `bson:"hotelId"`
+	HLat   float64 `bson:"lat"`
+	HLon   float64 `bson:"lon"`
+	HRate  float64 `bson:"rate"`
+	HPrice float64 `bson:"price"`
 }
 
 func initializeDatabase(url string) *mgo.Session {
@@ -29,7 +29,7 @@ func initializeDatabase(url string) *mgo.Session {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if count == 0{
+	if count == 0 {
 		err = c.Insert(&Hotel{"1", 37.7867, -122.4112, 109.00, 150.00})
 		if err != nil {
 			log.Fatal(err)
@@ -40,7 +40,7 @@ func initializeDatabase(url string) *mgo.Session {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if count == 0{
+	if count == 0 {
 		err = c.Insert(&Hotel{"2", 37.7854, -122.4005, 139.00, 120.00})
 		if err != nil {
 			log.Fatal(err)
@@ -51,7 +51,7 @@ func initializeDatabase(url string) *mgo.Session {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if count == 0{
+	if count == 0 {
 		err = c.Insert(&Hotel{"3", 37.7834, -122.4071, 109.00, 190.00})
 		if err != nil {
 			log.Fatal(err)
@@ -62,7 +62,7 @@ func initializeDatabase(url string) *mgo.Session {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if count == 0{
+	if count == 0 {
 		err = c.Insert(&Hotel{"4", 37.7936, -122.3930, 129.00, 160.00})
 		if err != nil {
 			log.Fatal(err)
@@ -73,7 +73,7 @@ func initializeDatabase(url string) *mgo.Session {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if count == 0{
+	if count == 0 {
 		err = c.Insert(&Hotel{"5", 37.7831, -122.4181, 119.00, 140.00})
 		if err != nil {
 			log.Fatal(err)
@@ -84,7 +84,7 @@ func initializeDatabase(url string) *mgo.Session {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if count == 0{
+	if count == 0 {
 		err = c.Insert(&Hotel{"6", 37.7863, -122.4015, 149.00, 200.00})
 		if err != nil {
 			log.Fatal(err)
@@ -98,8 +98,8 @@ func initializeDatabase(url string) *mgo.Session {
 		if err != nil {
 			log.Fatal(err)
 		}
-		lat := 37.7835 + float64(i)/500.0 * 3
-		lon := -122.41 + float64(i)/500.0 * 4
+		lat := 37.7835 + float64(i)/500.0*3
+		lon := -122.41 + float64(i)/500.0*4
 
 		count, err = c.Find(&bson.M{"hotelId": hotel_id}).Count()
 		if err != nil {
@@ -108,36 +108,33 @@ func initializeDatabase(url string) *mgo.Session {
 
 		rate := 135.00
 		rate_inc := 179.00
-		if i % 3 == 0 {
-			if i % 5 == 0 {
+		if i%3 == 0 {
+			if i%5 == 0 {
 				rate = 109.00
 				rate_inc = 123.17
-			} else if i % 5 == 1 {
+			} else if i%5 == 1 {
 				rate = 120.00
 				rate_inc = 140.00
-			} else if i % 5 == 2 {
+			} else if i%5 == 2 {
 				rate = 124.00
 				rate_inc = 144.00
-			} else if i % 5 == 3 {
+			} else if i%5 == 3 {
 				rate = 132.00
 				rate_inc = 158.00
-			} else if i % 5 == 4 {
+			} else if i%5 == 4 {
 				rate = 232.00
 				rate_inc = 258.00
 			}
 		}
 
-		if count == 0{
+		if count == 0 {
 			err = c.Insert(&Hotel{hotel_id, lat, lon, rate, rate_inc})
 			if err != nil {
 				log.Fatal(err)
 			}
 		}
 
-
 	}
-
-	
 
 	err = c.EnsureIndexKey("hotelId")
 	if err != nil {

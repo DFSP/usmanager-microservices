@@ -8,11 +8,11 @@ metadata:
   name: mongodb-geo
 spec:
   ports:
-  - name: "27018"
-    port: 27018
-    targetPort: 27017
+    - name: "27018"
+      port: 27018
+      targetPort: 27017
   selector:
     death-star-project: hotel-res
     app-name: mongodb-geo
 status:
-  loadBalancer: {}
+  loadBalancer: { }

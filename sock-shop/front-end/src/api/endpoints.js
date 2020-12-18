@@ -30,34 +30,46 @@
     module.exports = function () {
 
         module.catalogueUrl = function () {
-            return getServiceEndpoint("CATALOGUE")
+            return getServiceEndpointSync("CATALOGUE")
         }
         module.catalogueTagsUrl = function () {
-            return `${getServiceEndpoint("CATALOGUE")}/tags`
+            return `${getServiceEndpointSync("CATALOGUE")}/tags`
         }
         module.cartsUrl = function () {
-            return `${getServiceEndpoint("CARTS")}/carts`
+            return `${getServiceEndpointSync("CARTS")}/carts`
         }
         module.ordersUrl = function () {
-            return getServiceEndpoint("ORDERS")
+            return getServiceEndpointSync("ORDERS")
         }
         module.userCustomersUrl = function () {
-            return `${getServiceEndpoint("USER")}/customers`
+            return `${getServiceEndpointSync("USER")}/customers`
         }
         module.userAddressesUrl = function () {
-            return `${getServiceEndpoint("USER")}/addresses`
+            return `${getServiceEndpointSync("USER")}/addresses`
         }
         module.userCardsUrl = function () {
-            return `${getServiceEndpoint("USER")}/cards`
+            return `${getServiceEndpointSync("USER")}/cards`
         }
         module.userLoginUrl = function () {
-            return `${getServiceEndpoint("USER")}/login`
+            return `${getServiceEndpointSync("USER")}/login`
         }
         module.userRegisterUrl = function () {
-            return `${getServiceEndpoint("USER")}/register`
+            return `${getServiceEndpointSync("USER")}/register`
         }
 
         return module;
+    }
+
+    // TODO : change to the async version
+    function getServiceEndpointSync(service) {
+        try {
+            var res = request('GET', `http://localhost:1906/api/services/SOCK-SHOP-${service}/endpoint`);
+            const resData = JSON.parse(res.getBody('utf8'));
+            return resData.endpoint
+        } catch (error) {
+            console.error("Request service endpoint error: " + error);
+            return ''
+        }
     }
 
     async function getServiceEndpoint(service) {
@@ -66,7 +78,7 @@
             const data = response.data;
             return data.endpoint
         } catch (error) {
-            console.error("Request service endpoint. " + error);
+            console.error("Request service endpoint error: " + error);
             return ''
         }
     }

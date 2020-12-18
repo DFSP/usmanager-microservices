@@ -8,11 +8,11 @@ metadata:
   name: geo
 spec:
   ports:
-  - name: "8083"
-    port: 8083
-    targetPort: 8083
+    - name: "8083"
+      port: 8083
+      targetPort: 8083
   selector:
     death-star-project: hotel-res
     app-name: geo
 status:
-  loadBalancer: {}
+  loadBalancer: { }

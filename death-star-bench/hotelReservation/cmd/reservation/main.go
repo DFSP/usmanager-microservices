@@ -8,9 +8,9 @@ import (
 	"log"
 	"os"
 
-	"github.com/harlow/go-micro-services/registry"
-	"github.com/harlow/go-micro-services/services/reservation"
-	"github.com/harlow/go-micro-services/tracing"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/services/reservation"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/tracing"
 	"strconv"
 
 	"github.com/bradfitz/gomemcache/memcache"
@@ -39,7 +39,7 @@ func main() {
 	memc_client.MaxIdleConns = 512
 
 	serv_port, _ := strconv.Atoi(result["ReservePort"])
-	serv_ip   := result["ReserveIP"]
+	serv_ip := result["ReserveIP"]
 
 	fmt.Printf("reservation ip = %s, port = %d\n", serv_ip, serv_port)
 
@@ -61,13 +61,13 @@ func main() {
 	}
 
 	srv := &reservation.Server{
-		Tracer:   tracer,
+		Tracer: tracer,
 		// Port:     *port,
-		Registry: registry,
-		Port:     serv_port,
-		IpAddr:	  serv_ip,
+		Registry:     registry,
+		Port:         serv_port,
+		IpAddr:       serv_ip,
 		MongoSession: mongo_session,
-		MemcClient: memc_client,
+		MemcClient:   memc_client,
 	}
 	log.Fatal(srv.Run())
 }

@@ -8,8 +8,8 @@ metadata:
   name: user
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   resources:
     requests:
       storage: 100Mi
-status: {}
+status: { }

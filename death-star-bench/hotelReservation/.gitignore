@@ -1,0 +1,8 @@
+cmd/frontend/frontend
+cmd/geo/geo
+cmd/profile/profile
+cmd/rate/rate
+cmd/recommendation/recommendation
+cmd/reservation/reservation
+cmd/search/search
+cmd/user/user
