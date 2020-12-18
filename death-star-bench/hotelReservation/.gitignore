@@ -6,3 +6,4 @@ cmd/recommendation/recommendation
 cmd/reservation/reservation
 cmd/search/search
 cmd/user/user
+vendor
