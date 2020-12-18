@@ -36,7 +36,6 @@ const express = require("express"),
     metrics = require("./api/metrics"),
     app = express();
 
-require("babel-core/register");
 require("babel-polyfill");
 
 app.use(helpers.rewriteSlash);
