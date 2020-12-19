@@ -53,7 +53,7 @@ func (s *Server) Run() error {
 }
 
 func getEndpoint(srv string) (*registration.Endpoint, error) {
-	service := "HOTEL_RESERVATION_" + srv
+	service := "hotel-reservation-" + srv
 	ctx := context.Background()
 	apiClient := registration.NewAPIClient(registration.NewConfiguration())
 	endpoint, _, err := apiClient.EndpointsApi.GetServiceEndpoint(ctx, service)
@@ -64,7 +64,7 @@ func getEndpoint(srv string) (*registration.Endpoint, error) {
 }
 
 func (s *Server) getSearchClient() error {
-	service := "SEARCH"
+	service := "search"
 	endpoint, err := getEndpoint(service)
 	if err != nil {
 		return fmt.Errorf("get %s endpoint error: %v", service, err)
@@ -78,7 +78,7 @@ func (s *Server) getSearchClient() error {
 }
 
 func (s *Server) getProfileClient() error {
-	service := "PROFILE"
+	service := "profile"
 	endpoint, err := getEndpoint(service)
 	if err != nil {
 		return fmt.Errorf("get %s endpoint error: %v", service, err)
@@ -92,7 +92,7 @@ func (s *Server) getProfileClient() error {
 }
 
 func (s *Server) getRecommendationClient() error {
-	service := "RECOMMENDATION"
+	service := "recommendation"
 	endpoint, err := getEndpoint(service)
 	if err != nil {
 		return fmt.Errorf("get %s endpoint error: %v", service, err)
@@ -106,7 +106,7 @@ func (s *Server) getRecommendationClient() error {
 }
 
 func (s *Server) getUserClient() error {
-	service := "USER"
+	service := "user"
 	endpoint, err := getEndpoint(service)
 	if err != nil {
 		return fmt.Errorf("get %s endpoint error: %v", service, err)
@@ -120,7 +120,7 @@ func (s *Server) getUserClient() error {
 }
 
 func (s *Server) getReservation() error {
-	service := "RESERVATION"
+	service := "reservation"
 	endpoint, err := getEndpoint(service)
 	if err != nil {
 		return fmt.Errorf("get %s endpoint error: %v", service, err)

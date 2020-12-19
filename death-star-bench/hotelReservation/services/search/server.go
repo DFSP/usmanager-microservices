@@ -1,8 +1,12 @@
 package search
 
 import (
+	"errors"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/dialer"
 	// "encoding/json"
 	"fmt"
+	"github.com/usmanager/registration-client-go"
+
 	// F"io/ioutil"
 	"log"
 	"net"
@@ -11,7 +15,6 @@ import (
 
 	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
 	opentracing "github.com/opentracing/opentracing-go"
-	"github.com/usmanager/microservices/death-star-bench/hotelReservation/dialer"
 	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
 	geo "github.com/usmanager/microservices/death-star-bench/hotelReservation/services/geo/proto"
 	rate "github.com/usmanager/microservices/death-star-bench/hotelReservation/services/rate/proto"
@@ -53,14 +56,6 @@ func (s *Server) Run() error {
 	)
 	pb.RegisterSearchServer(srv, s)
 
-	// init grpc clients
-	if err := s.initGeoClient("srv-geo"); err != nil {
-		return err
-	}
-	if err := s.initRateClient("srv-rate"); err != nil {
-		return err
-	}
-
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", s.Port))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
@@ -92,29 +87,42 @@ func (s *Server) Shutdown() {
 	s.Registry.Deregister(name)
 }
 
-func (s *Server) initGeoClient(name string) error {
-	conn, err := dialer.Dial(
-		name,
-		dialer.WithTracer(s.Tracer),
-		dialer.WithBalancer(s.Registry.Client),
-	)
+func getEndpoint(srv string) (*registration.Endpoint, error) {
+	service := "hotel-reservation-" + srv
+	ctx := context.Background()
+	apiClient := registration.NewAPIClient(registration.NewConfiguration())
+	endpoint, _, err := apiClient.EndpointsApi.GetServiceEndpoint(ctx, service)
 	if err != nil {
-		return fmt.Errorf("dialer error: %v", err)
+		return nil, errors.New("")
 	}
-	s.geoClient = geo.NewGeoClient(conn)
-	return nil
+	return &endpoint, nil
 }
 
-func (s *Server) initRateClient(name string) error {
-	conn, err := dialer.Dial(
-		name,
-		dialer.WithTracer(s.Tracer),
-		dialer.WithBalancer(s.Registry.Client),
-	)
+func (s *Server) getRateClient() error {
+	service := "rate"
+	endpoint, err := getEndpoint(service)
+	if err != nil {
+		return fmt.Errorf("get %s endpoint error: %v", service, err)
+	}
+	conn, err := dialer.Dial(endpoint.Endpoint)
 	if err != nil {
 		return fmt.Errorf("dialer error: %v", err)
 	}
 	s.rateClient = rate.NewRateClient(conn)
+	return nil
+}
+
+func (s *Server) getGeoClient() error {
+	service := "geo"
+	endpoint, err := getEndpoint(service)
+	if err != nil {
+		return fmt.Errorf("get %s endpoint error: %v", service, err)
+	}
+	conn, err := dialer.Dial(endpoint.Endpoint)
+	if err != nil {
+		return fmt.Errorf("dialer error: %v", err)
+	}
+	s.geoClient = geo.NewGeoClient(conn)
 	return nil
 }
 
@@ -125,7 +133,10 @@ func (s *Server) Nearby(ctx context.Context, req *pb.NearbyRequest) (*pb.SearchR
 
 	// fmt.Printf("nearby lat = %f\n", req.Lat)
 	// fmt.Printf("nearby lon = %f\n", req.Lon)
-
+	err := s.getGeoClient()
+	if err != nil {
+		log.Fatalf("get geo client error: %v", err)
+	}
 	nearby, err := s.geoClient.Nearby(ctx, &geo.Request{
 		Lat: req.Lat,
 		Lon: req.Lon,
@@ -139,6 +150,10 @@ func (s *Server) Nearby(ctx context.Context, req *pb.NearbyRequest) (*pb.SearchR
 	// }
 
 	// find rates for hotels
+	err = s.getRateClient()
+	if err != nil {
+		log.Fatalf("get rate client error: %v", err)
+	}
 	rates, err := s.rateClient.GetRates(ctx, &rate.Request{
 		HotelIds: nearby.HotelIds,
 		InDate:   req.InDate,
