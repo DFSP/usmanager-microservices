@@ -134,7 +134,7 @@
                 uri: 'http://localhost:1906/api/metrics',
                 method: 'POST',
                 json: {
-                    "service": "sock-shop-front-end",
+                    "service": "sock-shop-frontend",
                     "latitude": latitude,
                     "longitude": longitude,
                     "count": 1

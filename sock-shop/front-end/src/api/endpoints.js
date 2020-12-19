@@ -30,31 +30,31 @@
     module.exports = function () {
 
         module.catalogueUrl = async function () {
-            return await getServiceEndpoint("CATALOGUE")
+            return await getServiceEndpoint("catalogue")
         }
         module.catalogueTagsUrl = async function () {
-            return `${await getServiceEndpoint("CATALOGUE")}/tags`
+            return `${await getServiceEndpoint("catalogue")}/tags`
         }
         module.cartsUrl = async function () {
-            return `${await getServiceEndpoint("CARTS")}/carts`
+            return `${await getServiceEndpoint("carts")}/carts`
         }
         module.ordersUrl = async function () {
-            return await getServiceEndpoint("ORDERS")
+            return await getServiceEndpoint("orders")
         }
         module.userCustomersUrl = async function () {
-            return `${await getServiceEndpoint("USER")}/customers`
+            return `${await getServiceEndpoint("user")}/customers`
         }
         module.userAddressesUrl = async function () {
-            return `${await getServiceEndpoint("USER")}/addresses`
+            return `${await getServiceEndpoint("user")}/addresses`
         }
         module.userCardsUrl = async function () {
-            return `${await getServiceEndpoint("USER")}/cards`
+            return `${await getServiceEndpoint("user")}/cards`
         }
         module.userLoginUrl = async function () {
-            return `${await getServiceEndpoint("USER")}/login`
+            return `${await getServiceEndpoint("user")}/login`
         }
         module.userRegisterUrl = async function () {
-            return `${await getServiceEndpoint("USER")}/register`
+            return `${await getServiceEndpoint("user")}/register`
         }
 
         return module;
@@ -79,7 +79,7 @@
 
     async function getServiceEndpoint(service) {
         try {
-            const url = `http://localhost:1906/api/services/SOCK-SHOP-${service}/endpoint`;
+            const url = `http://localhost:1906/api/services/sock-shop-${service}/endpoint`;
             console.log(`GET ${url}`);
             const response = await axios.get(url);
             const data = response.data;
