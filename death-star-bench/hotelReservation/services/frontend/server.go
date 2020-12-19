@@ -2,6 +2,7 @@ package frontend
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/opentracing/opentracing-go"
@@ -57,7 +58,7 @@ func getEndpoint(srv string) (*registration.Endpoint, error) {
 	apiClient := registration.NewAPIClient(registration.NewConfiguration())
 	endpoint, _, err := apiClient.EndpointsApi.GetServiceEndpoint(ctx, service)
 	if err != nil {
-		return nil, fmt.Errorf("get service %s endpoint error: %v", service, err)
+		return nil, errors.New("")
 	}
 	return &endpoint, nil
 }
@@ -66,7 +67,7 @@ func (s *Server) getSearchClient() error {
 	service := "SEARCH"
 	endpoint, err := getEndpoint(service)
 	if err != nil {
-		return fmt.Errorf("get service %s endpoint error: %v", service, err)
+		return fmt.Errorf("get %s endpoint error: %v", service, err)
 	}
 	conn, err := dialer.Dial(endpoint.Endpoint)
 	if err != nil {
@@ -80,7 +81,7 @@ func (s *Server) getProfileClient() error {
 	service := "PROFILE"
 	endpoint, err := getEndpoint(service)
 	if err != nil {
-		return fmt.Errorf("get service %s endpoint error: %v", service, err)
+		return fmt.Errorf("get %s endpoint error: %v", service, err)
 	}
 	conn, err := dialer.Dial(endpoint.Endpoint)
 	if err != nil {
@@ -94,7 +95,7 @@ func (s *Server) getRecommendationClient() error {
 	service := "RECOMMENDATION"
 	endpoint, err := getEndpoint(service)
 	if err != nil {
-		return fmt.Errorf("get service %s endpoint error: %v", service, err)
+		return fmt.Errorf("get %s endpoint error: %v", service, err)
 	}
 	conn, err := dialer.Dial(endpoint.Endpoint)
 	if err != nil {
@@ -108,7 +109,7 @@ func (s *Server) getUserClient() error {
 	service := "USER"
 	endpoint, err := getEndpoint(service)
 	if err != nil {
-		return fmt.Errorf("get service %s endpoint error: %v", service, err)
+		return fmt.Errorf("get %s endpoint error: %v", service, err)
 	}
 	conn, err := dialer.Dial(endpoint.Endpoint)
 	if err != nil {
@@ -122,7 +123,7 @@ func (s *Server) getReservation() error {
 	service := "RESERVATION"
 	endpoint, err := getEndpoint(service)
 	if err != nil {
-		return fmt.Errorf("get service %s endpoint error: %v", service, err)
+		return fmt.Errorf("get %s endpoint error: %v", service, err)
 	}
 	conn, err := dialer.Dial(endpoint.Endpoint)
 	if err != nil {

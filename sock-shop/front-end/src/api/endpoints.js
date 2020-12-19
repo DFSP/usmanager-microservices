@@ -64,8 +64,14 @@
     function getServiceEndpointSync(service) {
         try {
             var res = request('GET', `http://localhost:1906/api/services/SOCK-SHOP-${service}/endpoint`);
-            const resData = JSON.parse(res.getBody('utf8'));
-            return resData.endpoint
+            console.log(res)
+            if (res.statusCode !== 200) {
+                console.error("Request service endpoint error: " + res.message);
+            }
+            else {
+                const resData = JSON.parse(res.getBody('utf8'));
+                return resData.endpoint
+            }
         } catch (error) {
             console.error("Request service endpoint error: " + error);
             return ''

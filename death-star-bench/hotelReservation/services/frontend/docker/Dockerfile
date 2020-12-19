@@ -29,9 +29,7 @@ COPY --from=build /app/frontend frontend
 COPY --from=registration-client /app/registration-client .
 COPY --from=build /go/src/github.com/usmanager/manager/microservices/hotelReservation/services/frontend/scripts/docker-init.sh docker-init.sh
 
-EXPOSE 5000
-
 RUN ["chmod", "+x", "docker-init.sh"]
 ENTRYPOINT ["./docker-init.sh"]
 # registration-server, externalPort, internalPort, hostname, registration-client port
-CMD ["127.0.0.1:8761", "5000", "80", "127.0.0.1", "1906"]
+CMD ["127.0.0.1:8761", "5000", "5000", "127.0.0.1", "1906"]
