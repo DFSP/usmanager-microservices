@@ -1,4 +1,3 @@
-FROM usmanager/registration-client-java AS registration-client-java
 FROM usmanager/registration-client AS registration-client
 
 FROM maven:3.6.1-jdk-8-alpine AS build
