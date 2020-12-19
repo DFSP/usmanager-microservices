@@ -27,7 +27,7 @@ WORKDIR /app
 
 COPY --from=build /app/frontend frontend
 COPY --from=registration-client /app/registration-client .
-COPY --from=build /go/src/github.com/usmanager/microservices/hotelReservation/services/frontend/scripts/docker-init.sh docker-init.sh
+COPY --from=build /go/src/github.com/usmanager/microservices/hotelReservation/docker/frontend/docker-init.sh docker-init.sh
 
 RUN ["chmod", "+x", "docker-init.sh"]
 ENTRYPOINT ["./docker-init.sh"]
