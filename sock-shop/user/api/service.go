@@ -34,8 +34,8 @@ import (
 	"io"
 	"time"
 
-	"github.com/usmanager/manager/microservices/sock-shop/user/db"
-	"github.com/usmanager/manager/microservices/sock-shop/user/users"
+	"github.com/usmanager/microservices/sock-shop/user/db"
+	"github.com/usmanager/microservices/sock-shop/user/users"
 )
 
 var (

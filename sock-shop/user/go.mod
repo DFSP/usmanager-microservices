@@ -1,4 +1,4 @@
-module github.com/usmanager/manager/microservices/sock-shop/user
+module github.com/usmanager/microservices/sock-shop/user
 
 go 1.13
 

@@ -34,8 +34,8 @@ import (
 	"github.com/go-kit/kit/endpoint"
 	"github.com/go-kit/kit/tracing/opentracing"
 	stdopentracing "github.com/opentracing/opentracing-go"
-	"github.com/usmanager/manager/microservices/sock-shop/user/db"
-	"github.com/usmanager/manager/microservices/sock-shop/user/users"
+	"github.com/usmanager/microservices/sock-shop/user/db"
+	"github.com/usmanager/microservices/sock-shop/user/users"
 )
 
 // Endpoints collects the endpoints that comprise the Service.

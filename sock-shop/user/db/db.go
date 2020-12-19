@@ -30,7 +30,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/usmanager/manager/microservices/sock-shop/user/users"
+	"github.com/usmanager/microservices/sock-shop/user/users"
 )
 
 // Database represents a simple interface so we can switch to a new system easily

@@ -1,11 +1,11 @@
 FROM golang:1.14.6-alpine AS build
 
 # Build user binary
-COPY . /go/src/github.com/usmanager/manager/microservices/sock-shop/user
-WORKDIR /go/src/github.com/usmanager/manager/microservices/sock-shop/user
+COPY . /go/src/github.com/usmanager/microservices/sock-shop/user
+WORKDIR /go/src/github.com/usmanager/microservices/sock-shop/user
 RUN go build -o user && \
 mkdir /app && \
-mv /go/src/github.com/usmanager/manager/microservices/sock-shop/user/user /app/user
+mv /go/src/github.com/usmanager/microservices/sock-shop/user/user /app/user
 
 # Build final image
 FROM usmanager/registration-client AS registration-client

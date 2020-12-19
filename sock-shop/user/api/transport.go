@@ -40,7 +40,7 @@ import (
 	"github.com/gorilla/mux"
 	stdopentracing "github.com/opentracing/opentracing-go"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"github.com/usmanager/manager/microservices/sock-shop/user/users"
+	"github.com/usmanager/microservices/sock-shop/user/users"
 )
 
 var (

@@ -1,11 +1,18 @@
 FROM golang:1.14.6-alpine AS build
 
 # Build catalogue binary
-COPY . /go/src/github.com/usmanager/manager/microservices/sock-shop/catalogue
-WORKDIR /go/src/github.com/usmanager/manager/microservices/sock-shop/catalogue/cmd
+COPY . /go/src/github.com/usmanager/microservices/sock-shop/catalogue
+WORKDIR /go/src/github.com/usmanager/microservices/sock-shop/catalogue
+
+RUN apk add --no-cache git && \
+go get -u github.com/FiloSottile/gvt && \
+gvt restore
+
+WORKDIR /go/src/github.com/usmanager/microservices/sock-shop/catalogue/cmd
+
 RUN go build -o catalogue && \
 mkdir /app && \
-mv /go/src/github.com/usmanager/manager/microservices/sock-shop/catalogue/cmd/catalogue /app/catalogue
+mv /go/src/github.com/usmanager/microservices/sock-shop/catalogue/cmd/catalogue /app/catalogue
 
 # Build final image
 FROM usmanager/registration-client AS registration-client

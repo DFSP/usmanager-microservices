@@ -25,7 +25,9 @@ docker run payment
 
 #### Dependencies
 ```
-go mod vendor
+cd $GOPATH/src/github.com/usmanager/microservices/sock-shop/payment
+go get -u github.com/FiloSottile/gvt
+gvt restore
 ```
 
 #### Using native Go tools

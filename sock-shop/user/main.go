@@ -43,9 +43,9 @@ import (
 	stdopentracing "github.com/opentracing/opentracing-go"
 	zipkin "github.com/openzipkin/zipkin-go-opentracing"
 	stdprometheus "github.com/prometheus/client_golang/prometheus"
-	"github.com/usmanager/manager/microservices/sock-shop/user/api"
-	"github.com/usmanager/manager/microservices/sock-shop/user/db"
-	"github.com/usmanager/manager/microservices/sock-shop/user/db/mongodb"
+	"github.com/usmanager/microservices/sock-shop/user/api"
+	"github.com/usmanager/microservices/sock-shop/user/db"
+	"github.com/usmanager/microservices/sock-shop/user/db/mongodb"
 	"github.com/usmanager/registration-client-go"
 	commonMiddleware "github.com/weaveworks/common/middleware"
 )
