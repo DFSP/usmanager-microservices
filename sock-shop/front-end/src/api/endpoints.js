@@ -60,8 +60,7 @@
         return module;
     }
 
-   /* // TODO : change to the async version
-    function getServiceEndpointSync(service) {
+   /* function getServiceEndpointSync(service) {
         try {
             var res = request('GET', `http://localhost:1906/api/services/SOCK-SHOP-${service}/endpoint`);
             console.log(res)

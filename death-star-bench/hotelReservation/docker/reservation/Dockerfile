@@ -10,6 +10,7 @@ COPY registry /go/src/github.com/usmanager/microservices/hotelReservation/regist
 COPY services /go/src/github.com/usmanager/microservices/hotelReservation/services
 COPY tracing /go/src/github.com/usmanager/microservices/hotelReservation/tracing
 COPY wrk2_lua_scripts /go/src/github.com/usmanager/microservices/hotelReservation/wrk2_lua_scripts
+COPY docker /go/src/github.com/usmanager/microservices/hotelReservation/docker
 COPY config.json go.mod Gopkg.toml /go/src/github.com/usmanager/microservices/hotelReservation/
 WORKDIR /go/src/github.com/usmanager/microservices/hotelReservation/cmd/reservation/
 RUN go build -o reservation && \
