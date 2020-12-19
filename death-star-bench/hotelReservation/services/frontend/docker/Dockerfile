@@ -31,5 +31,5 @@ COPY --from=build /go/src/github.com/usmanager/manager/microservices/hotelReserv
 
 RUN ["chmod", "+x", "docker-init.sh"]
 ENTRYPOINT ["./docker-init.sh"]
-# registration-server, externalPort, internalPort, hostname, registration-client port
+# registration-server, externalPort, internalPort, hostname, registration-client-port
 CMD ["127.0.0.1:8761", "5000", "5000", "127.0.0.1", "1906"]
