@@ -7,3 +7,5 @@ LICENSE
 Makefile
 .github
 api-spec
+vendor/**
+!vendor/manifest
