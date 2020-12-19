@@ -70,7 +70,7 @@
             return next(new Error("Must pass id of item to delete"), 400);
         }
         const customerId = helpers.getCustomerId(req, app.get("env"));
-        console.log("Delete item from cart " + req.url + " for user " + customerId)
+        console.log("Deleting item from cart " + req.url + " for user " + customerId)
         const options = {
             uri: endpoints.cartsUrl() + "/" + customerId + "/items/" + req.params.id.toString(),
             method: 'DELETE'

@@ -22,6 +22,8 @@
  * SOFTWARE.
  */
 
+require("regenerator-runtime/runtime");
+
 const express = require("express"),
     morgan = require("morgan"),
     bodyParser = require("body-parser"),
@@ -34,6 +36,7 @@ const express = require("express"),
     orders = require("./api/orders"),
     user = require("./api/user"),
     metrics = require("./api/metrics"),
+    axios = require("axios"),
     app = express();
 
 app.use(helpers.rewriteSlash);
@@ -74,4 +77,9 @@ app.use(helpers.errorHandler);
 const server = app.listen(process.env.PORT || 8079, function () {
     const port = server.address().port;
     console.log("App now running in %s mode on port %d", app.get("env"), port);
+
+    const url = `http://localhost:1906/api/register`;
+    console.log(`Sending POST ${url}`);
+    axios.post(url).then(() => console.log("registered frontend at " + Date.now()));
 });
+

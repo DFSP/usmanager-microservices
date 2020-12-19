@@ -29,38 +29,38 @@
 
     module.exports = function () {
 
-        module.catalogueUrl = function () {
-            return getServiceEndpointSync("CATALOGUE")
+        module.catalogueUrl = async function () {
+            return await getServiceEndpoint("CATALOGUE")
         }
-        module.catalogueTagsUrl = function () {
-            return `${getServiceEndpointSync("CATALOGUE")}/tags`
+        module.catalogueTagsUrl = async function () {
+            return `${await getServiceEndpoint("CATALOGUE")}/tags`
         }
-        module.cartsUrl = function () {
-            return `${getServiceEndpointSync("CARTS")}/carts`
+        module.cartsUrl = async function () {
+            return `${await getServiceEndpoint("CARTS")}/carts`
         }
-        module.ordersUrl = function () {
-            return getServiceEndpointSync("ORDERS")
+        module.ordersUrl = async function () {
+            return await getServiceEndpoint("ORDERS")
         }
-        module.userCustomersUrl = function () {
-            return `${getServiceEndpointSync("USER")}/customers`
+        module.userCustomersUrl = async function () {
+            return `${await getServiceEndpoint("USER")}/customers`
         }
-        module.userAddressesUrl = function () {
-            return `${getServiceEndpointSync("USER")}/addresses`
+        module.userAddressesUrl = async function () {
+            return `${await getServiceEndpoint("USER")}/addresses`
         }
-        module.userCardsUrl = function () {
-            return `${getServiceEndpointSync("USER")}/cards`
+        module.userCardsUrl = async function () {
+            return `${await getServiceEndpoint("USER")}/cards`
         }
-        module.userLoginUrl = function () {
-            return `${getServiceEndpointSync("USER")}/login`
+        module.userLoginUrl = async function () {
+            return `${await getServiceEndpoint("USER")}/login`
         }
-        module.userRegisterUrl = function () {
-            return `${getServiceEndpointSync("USER")}/register`
+        module.userRegisterUrl = async function () {
+            return `${await getServiceEndpoint("USER")}/register`
         }
 
         return module;
     }
 
-    // TODO : change to the async version
+   /* // TODO : change to the async version
     function getServiceEndpointSync(service) {
         try {
             var res = request('GET', `http://localhost:1906/api/services/SOCK-SHOP-${service}/endpoint`);
@@ -76,16 +76,20 @@
             console.error("Request service endpoint error: " + error);
             return ''
         }
-    }
+    }*/
 
     async function getServiceEndpoint(service) {
         try {
-            const response = await axios.get(`http://localhost:1906/api/services/SOCK-SHOP-${service}/endpoint`);
+            const url = `http://localhost:1906/api/services/SOCK-SHOP-${service}/endpoint`;
+            console.log(`GET ${url}`);
+            const response = await axios.get(url);
             const data = response.data;
-            return data.endpoint
+            const endpoint = data.endpoint;
+            console.log(`Response: ${endpoint}`);
+            return endpoint;
         } catch (error) {
             console.error("Request service endpoint error: " + error);
-            return ''
+            throw error
         }
     }
 
