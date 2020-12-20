@@ -1,65 +1,36 @@
 package main
 
 import (
-	"encoding/json"
 	"flag"
 	"fmt"
-	"io/ioutil"
-	"log"
-	"os"
-
-	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
 	"github.com/usmanager/microservices/death-star-bench/hotelReservation/services/recommendation"
-	"github.com/usmanager/microservices/death-star-bench/hotelReservation/tracing"
-	"strconv"
+	"log"
 	// "github.com/bradfitz/gomemcache/memcache"
 )
 
+var ipAddress string
+var port int
+var mongoAddress string
+
+func init() {
+	flag.StringVar(&ipAddress, "ipAddress", "127.0.0.1", "The server ip address")
+	flag.IntVar(&port, "port", 8085, "The server port")
+	flag.StringVar(&mongoAddress, "mongoAddress", "127.0.0.1", "The mongodb address")
+}
+
 func main() {
-	jsonFile, err := os.Open("config.json")
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	defer jsonFile.Close()
-
-	byteValue, _ := ioutil.ReadAll(jsonFile)
-
-	var result map[string]string
-	json.Unmarshal([]byte(byteValue), &result)
-
-	mongo_session := initializeDatabase(result["RecommendMongoAddress"])
-	defer mongo_session.Close()
-
-	serv_port, _ := strconv.Atoi(result["RecommendPort"])
-	serv_ip := result["RecommendIP"]
-
-	fmt.Printf("recommendation ip = %s, port = %d\n", serv_ip, serv_port)
-
-	var (
-		// port       = flag.Int("port", 8085, "The server port")
-		jaegeraddr = flag.String("jaegeraddr", result["consulAddress"], "Jaeger server addr")
-		consuladdr = flag.String("consuladdr", result["consulAddress"], "Consul address")
-	)
 	flag.Parse()
 
-	tracer, err := tracing.Init("recommendation", *jaegeraddr)
-	if err != nil {
-		panic(err)
-	}
+	mongoSession := initializeDatabase(mongoAddress)
+	defer mongoSession.Close()
 
-	registry, err := registry.NewClient(*consuladdr)
-	if err != nil {
-		panic(err)
-	}
+	fmt.Printf("rate ip = %s, port = %d, mongodb = %s\n", ipAddress, port, mongoAddress)
 
 	srv := &recommendation.Server{
-		Tracer: tracer,
-		// Port:     *port,
-		Registry:     registry,
-		Port:         serv_port,
-		IpAddr:       serv_ip,
-		MongoSession: mongo_session,
+		IpAddr:       ipAddress,
+		Port:         port,
+		MongoSession: mongoSession,
 	}
+
 	log.Fatal(srv.Run())
 }

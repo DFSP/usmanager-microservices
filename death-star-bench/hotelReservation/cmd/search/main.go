@@ -1,60 +1,29 @@
 package main
 
 import (
-	"encoding/json"
 	"flag"
 	"fmt"
-	"io/ioutil"
-	"log"
-	"os"
-
-	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
 	"github.com/usmanager/microservices/death-star-bench/hotelReservation/services/search"
-	"github.com/usmanager/microservices/death-star-bench/hotelReservation/tracing"
-	"strconv"
+	"log"
 )
 
+var ipAddress string
+var port int
+
+func init() {
+	flag.StringVar(&ipAddress, "ipAddress", "127.0.0.1", "The server ip address")
+	flag.IntVar(&port, "port", 8082, "The server port")
+}
+
 func main() {
-	jsonFile, err := os.Open("config.json")
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	defer jsonFile.Close()
-
-	byteValue, _ := ioutil.ReadAll(jsonFile)
-
-	var result map[string]string
-	json.Unmarshal([]byte(byteValue), &result)
-
-	serv_port, _ := strconv.Atoi(result["SearchPort"])
-	serv_ip := result["SearchIP"]
-
-	fmt.Printf("search ip = %s, port = %d\n", serv_ip, serv_port)
-
-	var (
-		// port       = flag.Int("port", 8082, "The server port")
-		jaegeraddr = flag.String("jaegeraddr", result["jaegerAddress"], "Jaeger address")
-		consuladdr = flag.String("consuladdr", result["consulAddress"], "Consul address")
-	)
 	flag.Parse()
 
-	tracer, err := tracing.Init("search", *jaegeraddr)
-	if err != nil {
-		panic(err)
-	}
-
-	registry, err := registry.NewClient(*consuladdr)
-	if err != nil {
-		panic(err)
-	}
+	fmt.Printf("rate ip = %s, port = %d\n", ipAddress, port)
 
 	srv := &search.Server{
-		Tracer: tracer,
-		// Port:     *port,
-		Port:     serv_port,
-		IpAddr:   serv_ip,
-		Registry: registry,
+		IpAddr:       ipAddress,
+		Port:         port,
 	}
+
 	log.Fatal(srv.Run())
 }

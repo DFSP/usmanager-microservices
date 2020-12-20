@@ -15,8 +15,10 @@ import (
 	"github.com/usmanager/microservices/death-star-bench/hotelReservation/services/user/proto"
 	"github.com/usmanager/registration-client-go"
 	"golang.org/x/net/context"
+	"log"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 // Server implements frontend service
@@ -38,8 +40,6 @@ func (s *Server) Run() error {
 		return fmt.Errorf("server port must be set")
 	}
 
-	// fmt.Printf("frontend before mux\n")
-
 	router := mux.NewRouter()
 	router.Handle("/", http.FileServer(http.Dir("services/frontend/static")))
 	router.Handle("/hotels", http.HandlerFunc(s.searchHandler))
@@ -47,9 +47,29 @@ func (s *Server) Run() error {
 	router.Handle("/user", http.HandlerFunc(s.userHandler))
 	router.Handle("/reservation", http.HandlerFunc(s.reservationHandler))
 
-	 fmt.Printf("Frontend start serving at port %d\n", s.Port)
+	fmt.Printf("Frontend start serving at port %d\n", s.Port)
 
-	return http.ListenAndServe(fmt.Sprintf(":%d", s.Port), router)
+	err := http.ListenAndServe(fmt.Sprintf(":%d", s.Port), router)
+	if err != nil {
+		log.Fatalf("failed to listen and serve: %v", err)
+	}
+
+	apiClient := registration.NewAPIClient(registration.NewConfiguration())
+	ctx := context.Background()
+	for index := 0; index < 5; index++ {
+		_, err := apiClient.EndpointsApi.RegisterEndpoint(ctx)
+		if err == nil {
+			break
+		}
+		if index >= 4 {
+			log.Fatal("Failed to register app: ", err, ". Giving up")
+		} else {
+			log.Print("Failed to register app. Error: ", err)
+			time.Sleep(5 * time.Second)
+		}
+	}
+
+	return err
 }
 
 func getEndpoint(srv string) (*registration.Endpoint, error) {

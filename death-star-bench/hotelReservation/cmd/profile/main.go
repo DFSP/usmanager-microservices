@@ -1,73 +1,44 @@
 package main
 
 import (
-	"encoding/json"
 	"flag"
 	"fmt"
-	"io/ioutil"
-	"log"
-	"os"
-	"strconv"
-
-	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
-	"github.com/usmanager/microservices/death-star-bench/hotelReservation/services/profile"
-	"github.com/usmanager/microservices/death-star-bench/hotelReservation/tracing"
-
 	"github.com/bradfitz/gomemcache/memcache"
+	"github.com/usmanager/microservices/death-star-bench/hotelReservation/services/profile"
+	"log"
 	"time"
 )
 
+var ipAddress string
+var port int
+var mongoAddress string
+var memcachedAddress string
+
+func init() {
+	flag.StringVar(&ipAddress, "ipAddress", "127.0.0.1", "The server ip address")
+	flag.IntVar(&port, "port", 8081, "The server port")
+	flag.StringVar(&mongoAddress, "mongoAddress", "127.0.0.1", "The mongodb address")
+	flag.StringVar(&memcachedAddress, "memcachedAddress", "127.0.0.1", "The memcached address")
+}
+
 func main() {
-	jsonFile, err := os.Open("config.json")
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	defer jsonFile.Close()
-
-	byteValue, _ := ioutil.ReadAll(jsonFile)
-
-	var result map[string]string
-	json.Unmarshal([]byte(byteValue), &result)
-
-	mongo_session := initializeDatabase(result["ProfileMongoAddress"])
-	defer mongo_session.Close()
-
-	fmt.Printf("profile memc addr port = %s\n", result["ProfileMemcAddress"])
-	memc_client := memcache.New(result["ProfileMemcAddress"])
-	memc_client.Timeout = time.Second * 2
-	memc_client.MaxIdleConns = 512
-
-	serv_port, _ := strconv.Atoi(result["ProfilePort"])
-	serv_ip := result["ProfileIP"]
-
-	fmt.Printf("profile ip = %s, port = %d\n", serv_ip, serv_port)
-
-	var (
-		// port       = flag.Int("port", 8081, "The server port")
-		jaegeraddr = flag.String("jaegeraddr", result["consulAddress"], "Jaeger server addr")
-		consuladdr = flag.String("consuladdr", result["consulAddress"], "Consul address")
-	)
 	flag.Parse()
 
-	tracer, err := tracing.Init("profile", *jaegeraddr)
-	if err != nil {
-		panic(err)
+	mongoSession := initializeDatabase(mongoAddress)
+	defer mongoSession.Close()
+
+	memcClient := memcache.New(memcachedAddress)
+	memcClient.Timeout = time.Second * 2
+	memcClient.MaxIdleConns = 512
+
+	fmt.Printf("profile ip = %s, port = %d, mongodb = %s, memcached = %s\n", ipAddress, port, mongoAddress, memcachedAddress)
+
+	srv := &profile.Server{
+		IpAddr:       ipAddress,
+		Port:         port,
+		MongoSession: mongoSession,
+		MemcClient:   memcClient,
 	}
 
-	registry, err := registry.NewClient(*consuladdr)
-	if err != nil {
-		panic(err)
-	}
-
-	srv := profile.Server{
-		Tracer: tracer,
-		// Port:     *port,
-		Registry:     registry,
-		Port:         serv_port,
-		IpAddr:       serv_ip,
-		MongoSession: mongo_session,
-		MemcClient:   memc_client,
-	}
 	log.Fatal(srv.Run())
 }

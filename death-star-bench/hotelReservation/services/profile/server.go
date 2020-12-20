@@ -3,6 +3,7 @@ package profile
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/usmanager/registration-client-go"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	// "io/ioutil"
@@ -62,30 +63,32 @@ func (s *Server) Run() error {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
-	// register the service
-	// jsonFile, err := os.Open("config.json")
-	// if err != nil {
-	// 	fmt.Println(err)
-	// }
-
-	// defer jsonFile.Close()
-
-	// byteValue, _ := ioutil.ReadAll(jsonFile)
-
-	// var result map[string]string
-	// json.Unmarshal([]byte(byteValue), &result)
-
-	err = s.Registry.Register(name, s.IpAddr, s.Port)
+	err = srv.Serve(lis)
 	if err != nil {
-		return fmt.Errorf("failed register: %v", err)
+		return err
 	}
 
-	return srv.Serve(lis)
+	apiClient := registration.NewAPIClient(registration.NewConfiguration())
+	ctx := context.Background()
+	for index := 0; index < 5; index++ {
+		_, err := apiClient.EndpointsApi.RegisterEndpoint(ctx)
+		if err == nil {
+			break
+		}
+		if index >= 4 {
+			log.Fatal("Failed to register app: ", err, ". Giving up")
+		} else {
+			log.Print("Failed to register app. Error: ", err)
+			time.Sleep(5 * time.Second)
+		}
+	}
+
+	return err
 }
 
 // Shutdown cleans up any processes
 func (s *Server) Shutdown() {
-	s.Registry.Deregister(name)
+	/*s.Registry.Deregister(name)*/
 }
 
 // GetProfiles returns hotel profiles for requested IDs
