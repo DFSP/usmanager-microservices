@@ -80,6 +80,6 @@ const server = app.listen(process.env.PORT || 8079, function () {
 
     const url = `http://localhost:1906/api/register`;
     console.log(`Sending POST ${url}`);
-    axios.post(url).then(() => console.log("registered frontend at " + Date.now()));
+    axios.post(url).then(() => console.log("Registered frontend at " + Date.now().toString()));
 });
 

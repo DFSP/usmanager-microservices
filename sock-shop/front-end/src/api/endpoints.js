@@ -87,8 +87,8 @@
             console.log(`Response: ${endpoint}`);
             return endpoint;
         } catch (error) {
-            console.error("Request service endpoint error: " + error);
-            throw error
+            console.error("Failed to request service " + service + " endpoint. " + error);
+            return null;
         }
     }
 
