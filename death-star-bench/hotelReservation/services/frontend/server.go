@@ -17,7 +17,10 @@ import (
 	"golang.org/x/net/context"
 	"log"
 	"net/http"
+	"os"
+	"os/signal"
 	"strconv"
+	"syscall"
 	"time"
 )
 
@@ -49,10 +52,12 @@ func (s *Server) Run() error {
 
 	fmt.Printf("Frontend start serving at port %d\n", s.Port)
 
-	err := http.ListenAndServe(fmt.Sprintf(":%d", s.Port), router)
-	if err != nil {
-		log.Fatalf("failed to listen and serve: %v", err)
-	}
+	errc := make(chan error)
+
+	// Create and launch the HTTP server.
+	go func() {
+		errc <- http.ListenAndServe(fmt.Sprintf(":%d", s.Port), router)
+	}()
 
 	apiClient := registration.NewAPIClient(registration.NewConfiguration())
 	ctx := context.Background()
@@ -69,7 +74,14 @@ func (s *Server) Run() error {
 		}
 	}
 
-	return err
+	// Capture interrupts.
+	go func() {
+		c := make(chan os.Signal)
+		signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
+		errc <- fmt.Errorf("%s", <-c)
+	}()
+
+	return <- errc
 }
 
 func getEndpoint(srv string) (*registration.Endpoint, error) {

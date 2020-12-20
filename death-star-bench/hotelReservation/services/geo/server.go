@@ -6,6 +6,10 @@ import (
 	"github.com/usmanager/registration-client-go"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
+	"os"
+	"os/signal"
+	"syscall"
+
 	// "io/ioutil"
 	"log"
 	"net"
@@ -70,15 +74,17 @@ func (s *Server) Run() error {
 
 	pb.RegisterGeoServer(srv, s)
 
-	// listener
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", s.Port))
 	if err != nil {
 		return fmt.Errorf("failed to listen: %v", err)
 	}
-	err = srv.Serve(lis)
-	if err != nil {
-		return err
-	}
+
+	errc := make(chan error)
+
+	// Create and launch the HTTP server.
+	go func() {
+		errc <- srv.Serve(lis)
+	}()
 
 	apiClient := registration.NewAPIClient(registration.NewConfiguration())
 	ctx := context.Background()
@@ -95,7 +101,14 @@ func (s *Server) Run() error {
 		}
 	}
 
-	return err
+	// Capture interrupts.
+	go func() {
+		c := make(chan os.Signal)
+		signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
+		errc <- fmt.Errorf("%s", <-c)
+	}()
+
+	return <- errc
 }
 
 // Shutdown cleans up any processes

@@ -3,6 +3,9 @@ package search
 import (
 	"errors"
 	"github.com/usmanager/microservices/death-star-bench/hotelReservation/dialer"
+	"os/signal"
+	"syscall"
+
 	// "encoding/json"
 	"fmt"
 	"github.com/usmanager/registration-client-go"
@@ -58,13 +61,15 @@ func (s *Server) Run() error {
 
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", s.Port))
 	if err != nil {
-		log.Fatalf("failed to listen: %v", err)
+		return fmt.Errorf("failed to listen: %v", err)
 	}
 
-	err = srv.Serve(lis)
-	if err != nil {
-		return err
-	}
+	errc := make(chan error)
+
+	// Create and launch the HTTP server.
+	go func() {
+		errc <- srv.Serve(lis)
+	}()
 
 	apiClient := registration.NewAPIClient(registration.NewConfiguration())
 	ctx := context.Background()
@@ -81,7 +86,14 @@ func (s *Server) Run() error {
 		}
 	}
 
-	return err
+	// Capture interrupts.
+	go func() {
+		c := make(chan os.Signal)
+		signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
+		errc <- fmt.Errorf("%s", <-c)
+	}()
+
+	return <- errc
 }
 
 // Shutdown cleans up any processes
