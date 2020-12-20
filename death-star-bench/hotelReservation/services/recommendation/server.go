@@ -16,6 +16,7 @@ import (
 	"gopkg.in/mgo.v2/bson"
 	"os"
 	"os/signal"
+	"syscall"
 
 	// "io/ioutil"
 	"log"
@@ -98,7 +99,6 @@ func (s *Server) Run() error {
 	}()
 
 	return <- errc
-	return err
 }
 
 // Shutdown cleans up any processes
