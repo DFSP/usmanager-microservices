@@ -48,7 +48,6 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
 		final int retries = 5;
 		for (int i = 0; i < retries; i++) {
 			try {
-				System.out.println("Registering app");
 				endpointsApi.registerEndpoint();
 				break;
 			}
