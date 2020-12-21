@@ -34,11 +34,11 @@
         app = express();
 
     // List items in cart for current logged in user
-    app.get("/cart", function (req, res, next) {
+    app.get("/cart", async function (req, res, next) {
         const customerId = helpers.getCustomerId(req, app.get("env"));
         console.log("Request received: " + req.url + ", " + req.query.customerId);
         console.log("Customer ID: " + customerId);
-        request(`${endpoints.cartsUrl()}/${customerId}/items`,
+        request(`${await endpoints.cartsUrl()}/${customerId}/items`,
             function (error, response, body) {
                 if (error) {
                     return next(error);
@@ -72,7 +72,7 @@
         const customerId = helpers.getCustomerId(req, app.get("env"));
         console.log("Deleting item from cart " + req.url + " for user " + customerId)
         const options = {
-            uri: endpoints.cartsUrl() + "/" + customerId + "/items/" + req.params.id.toString(),
+            uri: `${endpoints.cartsUrl()}/${customerId}/items/${req.params.id.toString()}`,
             method: 'DELETE'
         };
         request(options, function (error, response, body) {
@@ -143,10 +143,11 @@
 
         async.waterfall([
             function (callback) {
-                request(endpoints.catalogueUrl() + "/catalogue/" + req.body.id.toString(), function (error, response, body) {
-                    console.log(body);
-                    callback(error, JSON.parse(body));
-                });
+                request(`${endpoints.catalogueUrl()}/catalogue/${req.body.id.toString()}`,
+                    function (error, response, body) {
+                        console.log(body);
+                        callback(error, JSON.parse(body));
+                    });
             },
             function (item, callback) {
                 const options = {

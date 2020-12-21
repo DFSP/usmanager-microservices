@@ -34,7 +34,7 @@
     app.get("/catalogue/images*",
         function (req, res, next) {
             helpers.sendLocationInfo(req);
-            const url = `${endpoints.catalogueUrl()}${req.url.toString()}}`
+            const url = `${endpoints.catalogueUrl()}/${req.url.toString()}}`
             request.get(url)
                 .on('error', function (e) {
                     next(e);
@@ -44,7 +44,7 @@
 
     app.get("/catalogue*", function (req, res, next) {
         helpers.sendLocationInfo(req);
-        const url = `${endpoints.catalogueUrl()}${req.url.toString()}}`
+        const url = `${endpoints.catalogueUrl()}/${req.url.toString()}}`
         helpers.simpleHttpRequest(url, res, next);
     });
 
