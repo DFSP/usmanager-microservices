@@ -44,11 +44,18 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
 
 	private void registerEndpoint() {
 		EndpointsApi endpointsApi = new EndpointsApi();
-		try {
-			endpointsApi.registerEndpoint();
-		}
-		catch (ApiException e) {
-			e.printStackTrace();
+		final int sleep = 5;
+		final int retries = 5;
+		for (int i = 0; i < retries; i++) {
+			try {
+				endpointsApi.registerEndpoint();
+				break;
+			}
+			catch (ApiException e) {
+				e.printStackTrace();
+				System.out.println("Failed to register app, retrying in " + sleep + " seconds");
+				Thread.sleep(TimeUnit.SECONDS.toMillis(sleep));
+			}
 		}
 	}
 
