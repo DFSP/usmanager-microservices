@@ -1,36 +1,31 @@
 FROM golang:1.14.6-alpine AS build
-
 RUN apk add --no-cache git
-
 # Build frontend binary
-COPY cmd/frontend /go/src/github.com/usmanager/microservices/hotelReservation/cmd/frontend
-COPY data /go/src/github.com/usmanager/microservices/hotelReservation/data
-COPY dialer /go/src/github.com/usmanager/microservices/hotelReservation/dialer
-COPY registry /go/src/github.com/usmanager/microservices/hotelReservation/registry
-COPY services /go/src/github.com/usmanager/microservices/hotelReservation/services
-COPY tracing /go/src/github.com/usmanager/microservices/hotelReservation/tracing
-COPY wrk2_lua_scripts /go/src/github.com/usmanager/microservices/hotelReservation/wrk2_lua_scripts
-COPY docker /go/src/github.com/usmanager/microservices/hotelReservation/docker
-COPY config.json go.mod Gopkg.toml /go/src/github.com/usmanager/microservices/hotelReservation/
-WORKDIR /go/src/github.com/usmanager/microservices/hotelReservation/cmd/frontend/
+ARG path=/go/src/github.com/usmanager/microservices/hotelReservation
+WORKDIR $path
+COPY cmd/frontend cmd/frontend
+COPY data data
+COPY dialer dialer
+COPY registry registry
+COPY services services
+COPY tracing tracing
+COPY wrk2_lua_scripts wrk2_lua_scripts
+COPY docker docker
+COPY config.json go.mod Gopkg.toml ./
+WORKDIR $path/cmd/frontend/
 RUN go build -o frontend && \
 mkdir /app && \
-mv /go/src/github.com/usmanager/microservices/hotelReservation/cmd/frontend/frontend /app/frontend
-
+mv frontend /app/frontend && \
+mv $path/docker/frontend/docker-init.sh /docker-init.sh
 # Build final image
 FROM usmanager/registration-client AS registration-client
 FROM alpine:3.12.0
-
-RUN apk add --no-cache git && \
-mkdir /app
-
+RUN mkdir /app
 WORKDIR /app
-
 COPY --from=build /app/frontend frontend
 COPY --from=registration-client /app/registration-client .
-COPY --from=build /go/src/github.com/usmanager/microservices/hotelReservation/docker/frontend/docker-init.sh docker-init.sh
-
+COPY --from=build docker-init.sh docker-init.sh
 RUN ["chmod", "+x", "docker-init.sh"]
 ENTRYPOINT ["./docker-init.sh"]
-# registration-server, externalPort, internalPort, hostname, registration-client-port
+# registration-server, external-port, internal-port, hostname, registration-client-port
 CMD ["127.0.0.1:8761", "5000", "5000", "127.0.0.1", "1906"]

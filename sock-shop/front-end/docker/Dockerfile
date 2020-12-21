@@ -30,5 +30,5 @@ EXPOSE 8079
 
 RUN ["chmod", "+x", "docker-init.sh"]
 ENTRYPOINT ["./docker-init.sh"]
-# registration-server, externalPort, internalPort, hostname, registration-client-port
+# registration-server, external-port, internal-port, hostname, registration-client-port
 CMD ["127.0.0.1:8761", "8079", "8079", "127.0.0.1", "1906"]
