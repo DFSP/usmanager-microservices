@@ -56,7 +56,12 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
 			catch (ApiException e) {
 				e.printStackTrace();
 				System.out.println("Failed to register app, retrying in " + sleep + " seconds");
-				Thread.sleep(TimeUnit.SECONDS.toMillis(sleep));
+				try {
+					Thread.sleep(TimeUnit.SECONDS.toMillis(sleep));
+				}
+				catch (InterruptedException interruptedException) {
+					interruptedException.printStackTrace();
+				}
 			}
 		}
 	}
