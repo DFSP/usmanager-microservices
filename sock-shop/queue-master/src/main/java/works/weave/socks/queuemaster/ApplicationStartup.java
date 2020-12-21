@@ -30,6 +30,8 @@ import org.springframework.stereotype.Component;
 import pt.unl.fct.miei.usmanagement.manager.ApiException;
 import pt.unl.fct.miei.usmanagement.manager.api.EndpointsApi;
 
+import java.util.concurrent.TimeUnit;
+
 @Component
 public class ApplicationStartup implements ApplicationListener<ApplicationReadyEvent> {
 

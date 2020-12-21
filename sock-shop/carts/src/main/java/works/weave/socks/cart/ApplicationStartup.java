@@ -27,6 +27,9 @@ package works.weave.socks.cart;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
+
+import java.util.concurrent.TimeUnit;
+
 import pt.unl.fct.miei.usmanagement.manager.ApiException;
 import pt.unl.fct.miei.usmanagement.manager.api.EndpointsApi;
 
