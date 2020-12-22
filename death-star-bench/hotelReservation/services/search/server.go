@@ -1,7 +1,6 @@
 package search
 
 import (
-	"errors"
 	"github.com/usmanager/microservices/death-star-bench/hotelReservation/dialer"
 	"os"
 	"os/signal"
@@ -17,7 +16,6 @@ import (
 	// "os"
 	"time"
 
-	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
 	opentracing "github.com/opentracing/opentracing-go"
 	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
 	geo "github.com/usmanager/microservices/death-star-bench/hotelReservation/services/geo/proto"
@@ -91,7 +89,7 @@ func (s *Server) Run() error {
 		errc <- fmt.Errorf("%s", <-c)
 	}()
 
-	return <- errc
+	return <-errc
 }
 
 // Shutdown cleans up any processes
@@ -106,7 +104,7 @@ func getEndpoint(srv string) (*registration.Endpoint, error) {
 	apiClient := registration.NewAPIClient(registration.NewConfiguration())
 	endpoint, _, err := apiClient.EndpointsApi.GetServiceEndpoint(ctx, service)
 	if err != nil {
-		return nil, errors.New("")
+		return nil, err
 	}
 	log.Printf("Got response: %+v\n", &endpoint)
 	return &endpoint, nil

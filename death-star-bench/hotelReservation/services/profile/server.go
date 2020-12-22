@@ -16,7 +16,6 @@ import (
 	// "os"
 	"time"
 
-	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
 	"github.com/opentracing/opentracing-go"
 	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
 	pb "github.com/usmanager/microservices/death-star-bench/hotelReservation/services/profile/proto"
@@ -93,7 +92,7 @@ func (s *Server) Run() error {
 		errc <- fmt.Errorf("%s", <-c)
 	}()
 
-	return <- errc
+	return <-errc
 }
 
 // Shutdown cleans up any processes

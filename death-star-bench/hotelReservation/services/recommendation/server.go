@@ -3,7 +3,6 @@ package recommendation
 import (
 	// "encoding/json"
 	"fmt"
-	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
 	"github.com/hailocab/go-geoindex"
 	"github.com/opentracing/opentracing-go"
 	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
@@ -95,7 +94,7 @@ func (s *Server) Run() error {
 		errc <- fmt.Errorf("%s", <-c)
 	}()
 
-	return <- errc
+	return <-errc
 }
 
 // Shutdown cleans up any processes

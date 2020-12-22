@@ -2,7 +2,6 @@ package frontend
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/opentracing/opentracing-go"
@@ -91,7 +90,7 @@ func getEndpoint(srv string) (*registration.Endpoint, error) {
 	apiClient := registration.NewAPIClient(registration.NewConfiguration())
 	endpoint, _, err := apiClient.EndpointsApi.GetServiceEndpoint(ctx, service)
 	if err != nil {
-		return nil, errors.New("")
+		return nil, err
 	}
 	log.Printf("Got response: %+v\n", &endpoint)
 	return &endpoint, nil
