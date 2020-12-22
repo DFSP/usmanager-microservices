@@ -138,7 +138,7 @@ func main() {
 	var db *sqlx.DB
 	var errDB error
 
-	for index := 0; index < 5; index++ {
+	for index := 0; index < 10; index++ {
 		db, errDB = sqlx.Open("mysql", dsnFinal)
 		if errDB != nil {
 			logger.Log("err", errDB)
