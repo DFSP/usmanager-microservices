@@ -16,7 +16,6 @@ import (
 	// "os"
 	"time"
 
-	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
 	"github.com/hailocab/go-geoindex"
 	opentracing "github.com/opentracing/opentracing-go"
 	"github.com/usmanager/microservices/death-star-bench/hotelReservation/registry"
@@ -67,9 +66,6 @@ func (s *Server) Run() error {
 		grpc.KeepaliveEnforcementPolicy(keepalive.EnforcementPolicy{
 			PermitWithoutStream: true,
 		}),
-		grpc.UnaryInterceptor(
-			otgrpc.OpenTracingServerInterceptor(s.Tracer),
-		),
 	)
 
 	pb.RegisterGeoServer(srv, s)
