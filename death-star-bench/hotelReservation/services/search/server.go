@@ -111,7 +111,7 @@ func getEndpoint(srv string) (*registration.Endpoint, error) {
 	if err != nil {
 		return nil, errors.New("")
 	}
-	log.Printf("Got response: %s\n", &endpoint)
+	log.Printf("Got response: %+v\n", &endpoint)
 	return &endpoint, nil
 }
 
