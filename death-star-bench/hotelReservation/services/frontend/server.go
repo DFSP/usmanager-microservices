@@ -86,12 +86,14 @@ func (s *Server) Run() error {
 
 func getEndpoint(srv string) (*registration.Endpoint, error) {
 	service := "hotel-reservation-" + srv
+	log.Printf("Requesting endpoint for service %s\n", service)
 	ctx := context.Background()
 	apiClient := registration.NewAPIClient(registration.NewConfiguration())
 	endpoint, _, err := apiClient.EndpointsApi.GetServiceEndpoint(ctx, service)
 	if err != nil {
 		return nil, errors.New("")
 	}
+	log.Printf("Got response: %s\n", &endpoint)
 	return &endpoint, nil
 }
 
