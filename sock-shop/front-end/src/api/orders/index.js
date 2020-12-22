@@ -41,8 +41,8 @@
 
         const customerId = req.session.customerId;
         async.waterfall([
-                function (callback) {
-                    const url = `${endpoints.ordersUrl()}/orders/search/customerId?sort=date&customerId=${customerId}`
+                async function (callback) {
+                    const url = `${await endpoints.ordersUrl()}/orders/search/customerId?sort=date&customerId=${customerId}`
                     request(url, function (error, response, body) {
                         if (error) {
                             return callback(error);
@@ -64,8 +64,8 @@
             });
     });
 
-    app.get("/orders/*", function (req, res, next) {
-        const url = endpoints.ordersUrl() + req.url.toString();
+    app.get("/orders/*", async function (req, res, next) {
+        const url = await endpoints.ordersUrl() + req.url.toString();
         request.get(url).pipe(res);
     });
 
@@ -79,9 +79,9 @@
         const customerId = req.session.customerId;
 
         async.waterfall([
-                function (callback) {
-                    const url = `${endpoints.userCustomersUrl()}/${customerId}`;
-                    request(url, function (error, response, body) {
+                async function (callback) {
+                    const url = `${await endpoints.userCustomersUrl()}/${customerId}`;
+                    request(url, async function (error, response, body) {
                         if (error || body.status_code === 500) {
                             callback(error);
                             return;
@@ -97,7 +97,7 @@
                             "customer": url,
                             "address": null,
                             "card": null,
-                            "items": `${endpoints.cartsUrl()}/${customerId}/items`
+                            "items": `${await endpoints.cartsUrl()}/${customerId}/items`
                         };
                         callback(null, order, addressLink, cardLink);
                     });
@@ -106,7 +106,7 @@
                     async.parallel([
                         function (callback) {
                             console.log("GET Request to: " + addressLink);
-                            request.get(addressLink, function (error, response, body) {
+                            request.get(addressLink, async function (error, response, body) {
                                 if (error) {
                                     callback(error);
                                     return;
@@ -114,14 +114,14 @@
                                 console.log("Received response: " + JSON.stringify(body));
                                 const jsonBody = JSON.parse(body);
                                 if (jsonBody.status_code !== 500 && jsonBody._embedded.address[0] != null) {
-                                    order.address = `${endpoints.userAddressesUrl()}/${jsonBody._embedded.address[0].id}`;
+                                    order.address = `${await endpoints.userAddressesUrl()}/${jsonBody._embedded.address[0].id}`;
                                 }
                                 callback();
                             });
                         },
                         function (callback) {
                             console.log("GET Request to: " + cardLink);
-                            request.get(cardLink, function (error, response, body) {
+                            request.get(cardLink, async function (error, response, body) {
                                 if (error) {
                                     callback(error);
                                     return;
@@ -129,7 +129,7 @@
                                 console.log("Received response: " + JSON.stringify(body));
                                 const jsonBody = JSON.parse(body);
                                 if (jsonBody.status_code !== 500 && jsonBody._embedded.card[0] != null) {
-                                    order.card = `${endpoints.userCardsUrl()}/${jsonBody._embedded.card[0].id}`;
+                                    order.card = `${await endpoints.userCardsUrl()}/${jsonBody._embedded.card[0].id}`;
                                 }
                                 callback();
                             });
@@ -143,9 +143,9 @@
                         callback(null, order);
                     });
                 },
-                function (order, callback) {
+                async function (order, callback) {
                     const options = {
-                        uri: `${endpoints.ordersUrl()}/orders`,
+                        uri: `${await endpoints.ordersUrl()}/orders`,
                         method: 'POST',
                         json: true,
                         body: order

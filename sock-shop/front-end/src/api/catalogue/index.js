@@ -32,9 +32,9 @@
         app = express();
 
     app.get("/catalogue/images*",
-        function (req, res, next) {
+        async function (req, res, next) {
             helpers.sendLocationInfo(req);
-            const url = `${endpoints.catalogueUrl()}/${req.url.toString()}}`
+            const url = `${await endpoints.catalogueUrl()}/${req.url.toString()}}`
             request.get(url)
                 .on('error', function (e) {
                     next(e);
@@ -42,15 +42,15 @@
                 .pipe(res);
         });
 
-    app.get("/catalogue*", function (req, res, next) {
+    app.get("/catalogue*", async function (req, res, next) {
         helpers.sendLocationInfo(req);
-        const url = `${endpoints.catalogueUrl()}/${req.url.toString()}}`
+        const url = `${await endpoints.catalogueUrl()}/${req.url.toString()}}`
         helpers.simpleHttpRequest(url, res, next);
     });
 
-    app.get("/tags", function (req, res, next) {
+    app.get("/tags", async function (req, res, next) {
         helpers.sendLocationInfo(req);
-        const url = endpoints.catalogueTagsUrl();
+        const url = await endpoints.catalogueTagsUrl();
         helpers.simpleHttpRequest(url, res, next);
     });
 

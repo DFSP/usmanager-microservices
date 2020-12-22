@@ -34,28 +34,28 @@
         app = express(),
         cookie_name = "loggedIn";
 
-    app.get("/customers/:id", function (req, res, next) {
-        helpers.simpleHttpRequest(endpoints.userCustomersUrl() + "/" + req.session.customerId, res, next);
+    app.get("/customers/:id", async function (req, res, next) {
+        helpers.simpleHttpRequest(await endpoints.userCustomersUrl() + "/" + req.session.customerId, res, next);
     });
-    app.get("/cards/:id", function (req, res, next) {
-        helpers.simpleHttpRequest(endpoints.userCardsUrl() + "/" + req.params.id, res, next);
+    app.get("/cards/:id", async function (req, res, next) {
+        helpers.simpleHttpRequest(await endpoints.userCardsUrl() + "/" + req.params.id, res, next);
     });
 
-    app.get("/customers", function (req, res, next) {
-        helpers.simpleHttpRequest(endpoints.userCustomersUrl(), res, next);
+    app.get("/customers", async function (req, res, next) {
+        helpers.simpleHttpRequest(await endpoints.userCustomersUrl(), res, next);
     });
-    app.get("/addresses", function (req, res, next) {
-        helpers.simpleHttpRequest(endpoints.userAddressesUrl(), res, next);
+    app.get("/addresses", async function (req, res, next) {
+        helpers.simpleHttpRequest(await endpoints.userAddressesUrl(), res, next);
     });
-    app.get("/cards", function (req, res, next) {
-        helpers.simpleHttpRequest(endpoints.userCardsUrl(), res, next);
+    app.get("/cards", async function (req, res, next) {
+        helpers.simpleHttpRequest(await endpoints.userCardsUrl(), res, next);
     });
 
     // Create Customer - TO BE USED FOR TESTING ONLY (for now)
 
-    app.post("/customers", function (req, res, next) {
+    app.post("/customers", async function (req, res, next) {
         const options = {
-            uri: endpoints.userCustomersUrl(),
+            uri: await endpoints.userCustomersUrl(),
             method: 'POST',
             json: true,
             body: req.body
@@ -71,10 +71,10 @@
         }));
     });
 
-    app.post("/addresses", function (req, res, next) {
+    app.post("/addresses", async function (req, res, next) {
         req.body.userID = helpers.getCustomerId(req, app.get("env"));
         const options = {
-            uri: endpoints.userAddressesUrl(),
+            uri: await endpoints.userAddressesUrl(),
             method: 'POST',
             json: true,
             body: req.body
@@ -90,10 +90,10 @@
         }));
     });
 
-    app.get("/card", function (req, res, next) {
+    app.get("/card", async function (req, res, next) {
         const customerId = helpers.getCustomerId(req, app.get("env"));
         const options = {
-            uri: `${endpoints.userCustomersUrl()}/${customerId}/cards`,
+            uri: `${await endpoints.userCustomersUrl()}/${customerId}/cards`,
             method: 'GET',
         };
         request(options, function (error, response, body) {
@@ -113,10 +113,10 @@
         }));
     });
 
-    app.get("/address", function (req, res, next) {
+    app.get("/address", async function (req, res, next) {
         const customerId = helpers.getCustomerId(req, app.get("env"));
         const options = {
-            uri: `${endpoints.userCustomersUrl()}/${customerId}/addresses`,
+            uri: `${await endpoints.userCustomersUrl()}/${customerId}/addresses`,
             method: 'GET',
         };
         request(options, function (error, response, body) {
@@ -134,10 +134,10 @@
         }));
     });
 
-    app.post("/cards", function (req, res, next) {
+    app.post("/cards", async function (req, res, next) {
         req.body.userID = helpers.getCustomerId(req, app.get("env"));
         const options = {
-            uri: endpoints.userCardsUrl(),
+            uri: await endpoints.userCardsUrl(),
             method: 'POST',
             json: true,
             body: req.body
@@ -154,9 +154,9 @@
     });
 
     // Delete Customer - TO BE USED FOR TESTING ONLY (for now)
-    app.delete("/customers/:id", function (req, res, next) {
+    app.delete("/customers/:id", async function (req, res, next) {
         const options = {
-            uri: `${endpoints.userCustomersUrl()}/${ req.params.id}`,
+            uri: `${await endpoints.userCustomersUrl()}/${ req.params.id}`,
             method: 'DELETE'
         };
         console.log("Deleting Customer " + req.params.id);
@@ -171,10 +171,10 @@
     });
 
     // Delete Address - TO BE USED FOR TESTING ONLY (for now)
-    app.delete("/addresses/:id", function (req, res, next) {
+    app.delete("/addresses/:id", async function (req, res, next) {
         console.log("Deleting Address " + req.params.id);
         const options = {
-            uri: `${endpoints.userAddressesUrl()}/${ req.params.id}`,
+            uri: `${await endpoints.userAddressesUrl()}/${ req.params.id}`,
             method: 'DELETE'
         };
         request(options, function (error, response, body) {
@@ -188,10 +188,10 @@
     });
 
     // Delete Card - TO BE USED FOR TESTING ONLY (for now)
-    app.delete("/cards/:id", function (req, res, next) {
+    app.delete("/cards/:id", async function (req, res, next) {
         console.log("Deleting Card " + req.params.id);
         const options = {
-            uri: `${endpoints.userCardsUrl()}/${req.params.id}`,
+            uri: `${await endpoints.userCardsUrl()}/${req.params.id}`,
             method: 'DELETE'
         };
         request(options, function (error, response, body) {
@@ -204,10 +204,10 @@
         }));
     });
 
-    app.post("/register", function (req, res, next) {
+    app.post("/register", async function (req, res, next) {
         helpers.sendLocationInfo(req);
         const options = {
-            uri: endpoints.userRegisterUrl(),
+            uri: await endpoints.userRegisterUrl(),
             method: 'POST',
             json: true,
             body: req.body
@@ -236,11 +236,11 @@
                         callback(true);
                     });
                 },
-                function (customerId, callback) {
+                async function (customerId, callback) {
                     const sessionId = req.session.id;
                     console.log("Merging carts for customer id: " + customerId + " and session id: " + sessionId);
                     const options = {
-                        uri: `${endpoints.cartsUrl()}/${customerId}/merge?sessionId=${sessionId}`,
+                        uri: `${await endpoints.cartsUrl()}/${customerId}/merge?sessionId=${sessionId}`,
                         method: 'GET'
                     };
                     request(options, function (error, response, body) {
@@ -275,12 +275,12 @@
         helpers.sendLocationInfo(req);
         console.log("Received login request");
         async.waterfall([
-                function (callback) {
+                async function (callback) {
                     const options = {
                         headers: {
                             'Authorization': req.get('Authorization')
                         },
-                        uri: endpoints.userLoginUrl()
+                        uri: await endpoints.userLoginUrl()
                     };
                     request(options, function (error, response, body) {
                         if (error) {
@@ -299,11 +299,11 @@
                         callback(true);
                     });
                 },
-                function (customerId, callback) {
+                async function (customerId, callback) {
                     const sessionId = req.session.id;
                     console.log("Merging carts for customer id: " + customerId + " and session id: " + sessionId);
                     const options = {
-                        uri: `${endpoints.cartsUrl()}/${customerId}/merge?sessionId=${sessionId}`,
+                        uri: `${await endpoints.cartsUrl()}/${customerId}/merge?sessionId=${sessionId}`,
                         method: 'GET'
                     };
                     request(options, function (error, response, body) {

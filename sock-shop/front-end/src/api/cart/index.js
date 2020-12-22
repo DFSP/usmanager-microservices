@@ -48,11 +48,11 @@
     });
 
     // Delete cart
-    app.delete("/cart", function (req, res, next) {
+    app.delete("/cart", async function (req, res, next) {
         const customerId = helpers.getCustomerId(req, app.get("env"));
         console.log('Attempting to delete cart for user: ' + customerId);
         const options = {
-            uri: `${endpoints.cartsUrl()}/${customerId}`,
+            uri: `${await endpoints.cartsUrl()}/${customerId}`,
             method: 'DELETE'
         };
         request(options, function (error, response, body) {
@@ -65,14 +65,14 @@
     });
 
     // Delete item from cart
-    app.delete("/cart/:id", function (req, res, next) {
+    app.delete("/cart/:id", async function (req, res, next) {
         if (req.params.id == null) {
             return next(new Error("Must pass id of item to delete"), 400);
         }
         const customerId = helpers.getCustomerId(req, app.get("env"));
         console.log("Deleting item from cart " + req.url + " for user " + customerId)
         const options = {
-            uri: `${endpoints.cartsUrl()}/${customerId}/items/${req.params.id.toString()}`,
+            uri: `${await endpoints.cartsUrl()}/${customerId}/items/${req.params.id.toString()}`,
             method: 'DELETE'
         };
         request(options, function (error, response, body) {
@@ -94,16 +94,16 @@
         const customerId = helpers.getCustomerId(req, app.get("env"));
 
         async.waterfall([
-            function (callback) {
-                request(`${endpoints.catalogueUrl()}/catalogue/${req.body.id.toString()}`,
+            async function (callback) {
+                request(`${await endpoints.catalogueUrl()}/catalogue/${req.body.id.toString()}`,
                     function (error, response, body) {
                         console.log(body);
                         callback(error, JSON.parse(body));
                     });
             },
-            function (item, callback) {
+            async function (item, callback) {
                 const options = {
-                    uri: `${endpoints.cartsUrl()}/${customerId}/items"`,
+                    uri: `${await endpoints.cartsUrl()}/${customerId}/items"`,
                     method: 'POST',
                     json: true,
                     body: {itemId: item.id, unitPrice: item.price}
@@ -142,16 +142,16 @@
         const customer = helpers.getCustomerId(req, app.get("env"));
 
         async.waterfall([
-            function (callback) {
-                request(`${endpoints.catalogueUrl()}/catalogue/${req.body.id.toString()}`,
+            async function (callback) {
+                request(`${await endpoints.catalogueUrl()}/catalogue/${req.body.id.toString()}`,
                     function (error, response, body) {
                         console.log(body);
                         callback(error, JSON.parse(body));
                     });
             },
-            function (item, callback) {
+            async function (item, callback) {
                 const options = {
-                    uri: `${endpoints.cartsUrl()}/${customer}/items`,
+                    uri: `${await endpoints.cartsUrl()}/${customer}/items`,
                     method: 'PATCH',
                     json: true,
                     body: {itemId: item.id, quantity: parseInt(req.body.quantity), unitPrice: item.price}
