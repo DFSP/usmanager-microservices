@@ -85,7 +85,7 @@
             const data = response.data;
             const endpoint = data.endpoint;
             console.log(`Response: ${endpoint}`);
-            return endpoint;
+            return "http://" + endpoint;
         } catch (error) {
             console.error("Failed to request service " + service + " endpoint. " + error);
             return null;

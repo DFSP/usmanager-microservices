@@ -39,7 +39,7 @@ public class OrdersConfigurationProperties {
 	private String getAppEndpoint(String service) {
 		try {
 			Endpoint endpoint = endpointsApi.getServiceEndpoint(service);
-			return endpoint.getEndpoint();
+			return "http://" + endpoint.getEndpoint();
 		}
 		catch (ApiException e) {
 			e.printStackTrace();
