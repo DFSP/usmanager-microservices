@@ -16,6 +16,7 @@ WORKDIR $path/cmd/frontend/
 RUN go build -o frontend && \
 mkdir /app && \
 mv frontend /app/frontend && \
+mv ../../services/frontend/static /app/static && \
 mv $path/docker/frontend/docker-init.sh /docker-init.sh
 # Build final image
 FROM usmanager/registration-client AS registration-client
@@ -23,6 +24,7 @@ FROM alpine:3.12.0
 RUN mkdir /app
 WORKDIR /app
 COPY --from=build /app/frontend frontend
+COPY --from=build /app/static static
 COPY --from=registration-client /app/registration-client .
 COPY --from=build docker-init.sh docker-init.sh
 RUN ["chmod", "+x", "docker-init.sh"]

@@ -41,9 +41,8 @@ func (s *Server) Run() error {
 	if s.Port == 0 {
 		return fmt.Errorf("server port must be set")
 	}
-
 	router := mux.NewRouter()
-	router.Handle("/", http.FileServer(http.Dir("services/frontend/static")))
+	router.Handle("/", http.FileServer(http.Dir("static")))
 	router.Handle("/hotels", http.HandlerFunc(s.searchHandler))
 	router.Handle("/recommendations", http.HandlerFunc(s.recommendHandler))
 	router.Handle("/user", http.HandlerFunc(s.userHandler))
