@@ -15,7 +15,7 @@ mkdir /app && \
 mv /go/src/github.com/usmanager/microservices/sock-shop/catalogue/cmd/catalogue /app/catalogue
 
 # Build final image
-FROM registration-client AS registration-client
+FROM usmanager/registration-client AS registration-client
 FROM alpine:3.12.0
 RUN mkdir /app
 WORKDIR /app
