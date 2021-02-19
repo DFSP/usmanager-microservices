@@ -15,7 +15,7 @@ mkdir /app && \
 mv /go/src/github.com/usmanager/microservices/sock-shop/catalogue/cmd/catalogue /app/catalogue
 
 # Build final image
-FROM usmanager/registration-client AS registration-client
+FROM registration-client AS registration-client
 FROM alpine:3.12.0
 RUN mkdir /app
 WORKDIR /app
@@ -25,5 +25,7 @@ COPY images images
 COPY scripts/docker-init.sh docker-init.sh
 RUN ["chmod", "+x", "docker-init.sh"]
 ENTRYPOINT ["./docker-init.sh"]
-# registration-server, external-port, internal-port, hostname, registration-client-port, db
-CMD ["127.0.0.1:8761", "8080", "80", "127.0.0.1", "1906", "catalogue-db:3306"]
+ENV LATITUDE 0
+ENV LONGITUDE 0
+# registration-server, external-port, internal-port, hostname, registration-client-port, db, latitude, longitude
+CMD 127.0.0.1:8761 8080 80 127.0.0.1 1906 catalogue-db:3306 $LATITUDE $LONGITUDE
