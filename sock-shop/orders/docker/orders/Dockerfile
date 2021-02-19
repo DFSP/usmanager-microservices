@@ -23,5 +23,7 @@ COPY scripts/docker-init.sh docker-init.sh
 
 RUN ["chmod", "+x", "docker-init.sh"]
 ENTRYPOINT ["./docker-init.sh"]
-# registration-server, external-port, internal-port, hostname, registration-client-port, db
-CMD ["127.0.0.1:8761", "8080", "80", "127.0.0.1", "1906", "orders-db:27017"]
+ENV LATITUDE 0
+ENV LONGITUDE 0
+# registration-server, external-port, internal-port, hostname, registration-client-port, latitude, longitude, db
+CMD 127.0.0.1:8761 8080 80 127.0.0.1 1906 $LATITUDE $LONGITUDE orders-db:27017

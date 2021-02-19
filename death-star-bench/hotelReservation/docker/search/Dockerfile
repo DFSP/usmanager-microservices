@@ -28,5 +28,5 @@ COPY --from=registration-client /app/registration-client .
 COPY --from=build docker-init.sh docker-init.sh
 RUN ["chmod", "+x", "docker-init.sh"]
 ENTRYPOINT ["./docker-init.sh"]
-# registration-server, external-port, internal-port, hostname, registration-client-port
-CMD ["127.0.0.1:8761", "5000", "5000", "127.0.0.1", "1906"]
+# registration-server, external-port, internal-port, hostname, registration-client-port, latitude, longitude
+CMD 127.0.0.1:8761 5000 5000 127.0.0.1 1906 $LATITUDE $LONGITUDE

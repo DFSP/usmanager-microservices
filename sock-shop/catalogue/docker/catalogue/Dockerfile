@@ -27,5 +27,5 @@ RUN ["chmod", "+x", "docker-init.sh"]
 ENTRYPOINT ["./docker-init.sh"]
 ENV LATITUDE 0
 ENV LONGITUDE 0
-# registration-server, external-port, internal-port, hostname, registration-client-port, db, latitude, longitude
-CMD 127.0.0.1:8761 8080 80 127.0.0.1 1906 catalogue-db:3306 $LATITUDE $LONGITUDE
+# registration-server, external-port, internal-port, hostname, registration-client-port, latitude, longitude, db
+CMD 127.0.0.1:8761 8080 80 127.0.0.1 1906 $LATITUDE $LONGITUDE catalogue-db:3306
