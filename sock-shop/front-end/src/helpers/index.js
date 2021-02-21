@@ -126,15 +126,15 @@
     }
 
     helpers.sendLocationInfo = function (req) {
-        let latitude = req.headers.x_latitude;
-        let longitude = req.headers.x_longitude;
-
+        console.log('Headers ' + JSON.stringify(req.headers));
+        let latitude = req.header('x_latitude');
+        let longitude = req.header('x_longitude');
         if (latitude > 0 && longitude > 0) {
             const options = {
                 uri: 'http://localhost:1906/api/metrics',
                 method: 'POST',
                 json: {
-                    "service": "sock-shop-frontend",
+                    "service": "sock-shop",
                     "latitude": latitude,
                     "longitude": longitude,
                     "count": 1
@@ -147,6 +147,9 @@
                 }
                 console.log("Response body: " + JSON.stringify(body));
             });
+        }
+        else {
+            console.log("Not sending request to http://localhost:1906/api/metrics because longitude=" + longitude + " and latitude=" + latitude)
         }
 
     }

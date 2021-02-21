@@ -42,7 +42,7 @@ func (s *Server) Run() error {
 		return fmt.Errorf("server port must be set")
 	}
 	router := mux.NewRouter()
-	router.Handle("/", http.FileServer(http.Dir("static")))
+	router.Handle("/", http.FileServer(http.Dir("static"))) //TODO: send location request to request-monitor, as its done on sock shop
 	router.Handle("/hotels", http.HandlerFunc(s.searchHandler))
 	router.Handle("/recommendations", http.HandlerFunc(s.recommendHandler))
 	router.Handle("/user", http.HandlerFunc(s.userHandler))
