@@ -129,7 +129,7 @@
         console.log('Headers ' + JSON.stringify(req.headers));
         let latitude = req.header('x-latitude');
         let longitude = req.header('x-longitude');
-        if (latitude > 0 && longitude > 0) {
+        if (latitude !== undefined && longitude !== 0) {
             const options = {
                 uri: 'http://localhost:1906/api/metrics',
                 method: 'POST',
