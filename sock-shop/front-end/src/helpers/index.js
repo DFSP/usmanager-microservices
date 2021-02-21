@@ -127,8 +127,8 @@
 
     helpers.sendLocationInfo = function (req) {
         console.log('Headers ' + JSON.stringify(req.headers));
-        let latitude = req.header('x-latitude');
-        let longitude = req.header('x-longitude');
+        let latitude = parseFloat(req.header('x-latitude'));
+        let longitude = parseFloat(req.header('x-longitude'));
         if (latitude !== undefined && longitude !== 0) {
             const options = {
                 uri: 'http://localhost:1906/api/metrics',
@@ -140,7 +140,7 @@
                     "count": 1
                 }
             };
-            console.log("Send " + options + " to location info service")
+            console.log("Sending " + JSON.stringify(options) + " to location info service")
             request(options, function (error, response, body) {
                 if (error) {
                     console.error("Error sending location info to request-location-monitor...");
