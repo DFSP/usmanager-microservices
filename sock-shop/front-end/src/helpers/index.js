@@ -127,8 +127,8 @@
 
     helpers.sendLocationInfo = function (req) {
         console.log('Headers ' + JSON.stringify(req.headers));
-        let latitude = req.header('x_latitude');
-        let longitude = req.header('x_longitude');
+        let latitude = req.header('x-latitude');
+        let longitude = req.header('x-longitude');
         if (latitude > 0 && longitude > 0) {
             const options = {
                 uri: 'http://localhost:1906/api/metrics',
@@ -149,7 +149,7 @@
             });
         }
         else {
-            console.log("Not sending request to http://localhost:1906/api/metrics because longitude=" + longitude + " and latitude=" + latitude)
+            console.log("Not sending request to http://localhost:1906/api/metrics because latitude=" + latitude + " and longitude=" + longitude)
         }
 
     }
